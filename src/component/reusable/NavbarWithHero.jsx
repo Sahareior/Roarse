@@ -11,7 +11,7 @@ const NavbarWithHero = ({image,subtitle,title}) => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "100%",
-    minHeight: "90vh",
+    minHeight: "95vh",
   }}
   className="relative"
 >

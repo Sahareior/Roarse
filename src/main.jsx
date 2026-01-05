@@ -9,6 +9,8 @@ import App from './App.jsx'
 import TransportsLayout from './layouts/TransportsLayout.jsx';
 import ServicesLayout from './layouts/ServicesLayout.jsx';
 import Quote from './component/homepage/Quote/Quote.jsx';
+import DashboardHome from './component/dashboard/DashboardHome.jsx';
+import AdminOverview from './component/dashboard/admin/adminOverview/AdminOverview.jsx';
 
 
 const router = createBrowserRouter([
@@ -39,15 +41,32 @@ const router = createBrowserRouter([
   {
     path:'Carrier',
     element: <ServicesLayout />
-  }
+  },
+  // admin dashboard    
+
+{
+  path: 'dashboard',
+  element: <DashboardHome />,
+  children: [
+    {
+      index: true,               // 👈 default page (/dashboard)
+      element: <AdminOverview />
+    },
+    {
+      path: 'overview',          // 👈 relative
+      element: <AdminOverview />
+    }
+  ]
+}
+
 
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-      <div className='w-[95vw] mx-auto'>
+    
 
         <RouterProvider router={router} />
-      </div>
+   
   </StrictMode>,
 )
