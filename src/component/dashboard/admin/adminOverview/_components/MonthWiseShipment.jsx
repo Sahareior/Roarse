@@ -43,11 +43,11 @@ const MonthWiseShipment = () => {
           marginBottom: 8,
         }}
       >
-        <h2>Month wise shipment</h2>
+        <h2 className="text-3xl arReg text-center ">Month wise shipment</h2>
         <span style={{ color: "#999" }}>2025</span>
       </div>
 
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer className='pt-6' width="100%" height="100%">
         <BarChart data={data}>
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="month" />
