@@ -26,11 +26,12 @@ const YearWiseShipment = () => {
         height: 350,
         background: "#fff",
         padding: 16,
+        paddingBottom: 40,
         borderRadius: 8,
         boxShadow: "0 0 8px rgba(0,0,0,0.08)",
       }}
     >
-      <h2 className="text-3xl arReg" style={{ textAlign: "", marginBottom: 16 }}>
+      <h2 className="text-xl arReg" style={{ textAlign: "", marginBottom: 16 }}>
         Year wise shipment
       </h2>
 

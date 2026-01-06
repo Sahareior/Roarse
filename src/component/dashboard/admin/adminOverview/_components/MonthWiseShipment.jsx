@@ -31,6 +31,7 @@ const MonthWiseShipment = () => {
         height: 350,
         background: "#fff",
         padding: 16,
+        paddingBottom: 40,
         borderRadius: 8,
         boxShadow: "0 0 8px rgba(0,0,0,0.08)",
       }}
@@ -43,7 +44,7 @@ const MonthWiseShipment = () => {
           marginBottom: 8,
         }}
       >
-        <h2 className="text-3xl arReg text-center ">Month wise shipment</h2>
+        <h2 className="text-xl arReg text-center ">Month wise shipment</h2>
         <span style={{ color: "#999" }}>2025</span>
       </div>
 

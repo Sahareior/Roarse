@@ -126,7 +126,7 @@ const CarrierNShipperManagement = () => {
 
           </div>
 
-          <p className="arReg text-[20px] py-7">Shipper Lists</p>
+          <p className="arReg text-[20px] py-4 pb-7">Shipper Lists</p>
 
           {/* List */}
           <div className="space-y-3">
