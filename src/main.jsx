@@ -11,6 +11,9 @@ import ServicesLayout from './layouts/ServicesLayout.jsx';
 import Quote from './component/homepage/Quote/Quote.jsx';
 import DashboardHome from './component/dashboard/DashboardHome.jsx';
 import AdminOverview from './component/dashboard/admin/adminOverview/AdminOverview.jsx';
+import Login from './component/auth/login/Login.jsx';
+import Signup from './component/auth/signup/Signup.jsx';
+import ForgotPassword from './component/auth/forgotPassword/ForgotPassword.jsx';
 
 
 const router = createBrowserRouter([
@@ -41,6 +44,18 @@ const router = createBrowserRouter([
   {
     path:'Carrier',
     element: <ServicesLayout />
+  },
+  {
+    path:'login',
+    element: <Login />
+  },
+  {
+    path:'signup',
+    element: <Signup />
+  },
+  {
+    path:'forgot-password',
+    element: <ForgotPassword />
   },
   // admin dashboard    
 

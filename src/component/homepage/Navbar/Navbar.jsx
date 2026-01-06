@@ -7,10 +7,7 @@ const Navbar = () => {
     { name: "Home" },
     {
       name: "Service",
-      children: [
-        { childrenName: "Shipper" },
-        { childrenName: "Carrier" },
-      ],
+      children: [{ childrenName: "Shipper" }, { childrenName: "Carrier" }],
     },
     { name: "FAQ" },
     { name: "Contact" },
@@ -52,7 +49,8 @@ const Navbar = () => {
 
             {/* Dropdown */}
             {item.children && (
-              <div className="
+              <div
+                className="
                 absolute left-0 top-full mt-4 w-40
                 rounded-xl overflow-hidden
                 bg-black/80 backdrop-blur-xl
@@ -61,19 +59,19 @@ const Navbar = () => {
                 opacity-0 invisible
                 group-hover:opacity-100 group-hover:visible
                 transition-all duration-200
-              ">
+              "
+              >
                 {item.children.map((child, cidx) => (
                   <Link key={cidx} to={child.childrenName}>
-                  <button
-                    
-                    className="
+                    <button
+                      className="
                       w-full text-left px-4 py-2
                       text-sm text-white
                       hover:bg-white/10
                     "
-                  >
-                    {child.childrenName}
-                  </button>
+                    >
+                      {child.childrenName}
+                    </button>
                   </Link>
                 ))}
               </div>
