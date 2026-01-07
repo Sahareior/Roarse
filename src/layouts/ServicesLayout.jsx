@@ -5,13 +5,11 @@ import WhyDriversLoveRoarse from "../component/homepage/HomepageReusableComponen
 import Footer from "../component/homepage/footer/Footer";
 import NavbarWithHero from "../component/reusable/NavbarWithHero";
 import { useLocation } from "react-router-dom";
-import { FiTrendingUp } from "react-icons/fi";
 import { IoNotificationsOutline, IoSearch } from "react-icons/io5";
 import { TbRoute } from "react-icons/tb";
-import { BsCurrencyDollar, BsGraphUp } from "react-icons/bs";
-import { GiFuelTank } from "react-icons/gi";
+import { BsBox2, BsCurrencyDollar, BsGraphUp } from "react-icons/bs";
 import { LuWaves } from "react-icons/lu";
-import { PiGasCan, PiShippingContainerDuotone } from "react-icons/pi";
+import { PiGasCan } from "react-icons/pi";
 import { FaShip } from "react-icons/fa";
 
 const ServicesLayout = () => {
@@ -79,12 +77,12 @@ const ServicesLayout = () => {
         desc: "Instantly find verified carriers that match your shipment requirements using our intelligent matching algorithm. ",
       },
       {
-        icon: <PiShippingContainerDuotone />,
+        icon: <BsBox2 />,
         title: "Competitive Rate Marketplace",
         desc: "Compare real-time quotes from multiple carriers and choose the best rate for your budget. ",
       },
       {
-        icon: <FaShip />,
+        icon: <FaShip size={20} />,
         title: "Real Time Shipment Tracking",
         desc: "Monitor your cargos location 24/7 with live GPS tracking. Get automated updates at every milestone.",
       },

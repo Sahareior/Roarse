@@ -3,7 +3,8 @@ import Navbar from "../homepage/Navbar/Navbar";
 
 const NavbarWithHero = ({ image, subtitle, title }) => {
   const location = useLocation();
-  const isServicePage = location.pathname === "/carrier" || location.pathname === "/shipper";
+  const isServicePage =
+    location.pathname === "/carrier" || location.pathname === "/shipper";
 
   return (
     <div>
@@ -47,9 +48,11 @@ const NavbarWithHero = ({ image, subtitle, title }) => {
           >
             {subtitle}
           </p>
-          <button className={`mt-8 px-8 py-3 ${
-              isServicePage ? "text-white bg-black" : "text-black bg-white" 
-            } rounded-md text-lg font-medium hover:bg-gray-200 transition`}>
+          <button
+            className={`mt-8 px-8 py-3 ${
+              isServicePage ? "text-white bg-black" : "text-black bg-white"
+            } rounded-md text-lg font-medium`}
+          >
             Get Started
           </button>
         </div>
