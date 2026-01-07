@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600&display=swap');
+
 
 @tailwind base;
 @tailwind components;
@@ -11,17 +13,47 @@
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-
-
 }
 .robMed  {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
+}
 
+
+.arReg{
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.arBold{
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.arMed  {
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+/* .ant-menu-item{
+    padding: 30px;
+} */
+
+/* .ant-menu-item:hover {
+  background-color: #FFFDBA !important;  
+  color: rgb(16, 10, 10) !important;  
+} */
 
 }
 
 .roboto  {
   font-family: "Roboto", sans-serif;
 }
+/* Optional: Change the active item (selected item) background color */
