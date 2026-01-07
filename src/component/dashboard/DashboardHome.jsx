@@ -19,7 +19,8 @@ import { LuMessageSquare } from 'react-icons/lu';
 import { IoIosPaper } from 'react-icons/io';
 import { SlPlane } from 'react-icons/sl';
 import { IoExitOutline } from 'react-icons/io5';
-import { adminSidebarItems } from '../../tools/dashboardNavigation';
+import { adminSidebarItems, shipperSidebarItems } from '../../tools/dashboardNavigation';
+import DashboardHeader from '../reusable/dashboard/DashboardHeader';
 
 
 const DashboardHome = () => {
@@ -42,7 +43,7 @@ const DashboardHome = () => {
         }}
       >
 
-<div className='flex items-center mt-6 justify-center gap-4'>
+<div className='flex items-center mt-6 justify-center gap-3'>
          <p className='p-4 text-white rounded-full' style={{
         background: 'linear-gradient(135deg, #767575 0%, #474747 100%)'
 
@@ -50,14 +51,14 @@ const DashboardHome = () => {
        <p className='robReg text-[29px] text-white'>Roarse</p>
 </div>
         <Menu
-        className='mt-14 '
+        className='mt-14 robReg text-[16px]'
         style={{
           background: 'linear-gradient(90deg, #3D3D3D 0%, #16171B 100%)'
         }}
           theme="dark"
           mode="inline"
           selectedKeys={[location.pathname]}
-          items={adminSidebarItems}
+          items={shipperSidebarItems}
           onClick={({ key }) => {
             if (key !== 'settings') {
               navigate(key);
@@ -70,8 +71,8 @@ const DashboardHome = () => {
             <p className='flex text-white text-[18px] items-center gap-2'><IoExitOutline /> Logout</p>
           </div>
       <Layout>
-        {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
-        <div className='flex justify-between py-4 px-9 bg-[#E2E2E2]'>
+   <DashboardHeader />
+        {/* <div className='flex justify-between py-4 px-9 bg-[#E2E2E2]'>
           <div className='flex items-center gap-2'>
             <p className='text-[32px] arBold'>WelCome</p>
             <p className='text-2xl'>,</p>
@@ -84,7 +85,7 @@ const DashboardHome = () => {
             <Avatar size={40} icon={<UserOutlined />} />
            </Link>
           </div>
-        </div>
+        </div> */}
         <Content style={{ margin: '6px' }}>
           <div
             className="h-[87vh] overflow-auto"

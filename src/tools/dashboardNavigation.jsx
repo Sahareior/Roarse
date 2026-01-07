@@ -96,3 +96,78 @@ export const adminSidebarItems = [
     ],
   },
 ];
+
+
+
+export const shipperSidebarItems = [
+  {
+    key: '/dashboard/shipper-dashboard/overview',
+    icon: <AppstoreOutlined />,
+    label: 'Dashboard',
+  },
+  {
+    key: '/dashboard/shipper-dashboard/active-shipments',
+    icon: <UserOutlined />,
+    label: 'Active Shipments',
+  },
+  {
+    key: '/dashboard/shipper-dashboard/history',
+    icon: <UserOutlined />,
+    label: 'History',
+  },
+  {
+    key: '/dashboard/shipper-dashboard/live-tracking',
+    icon: <CarOutlined />,
+    label: 'Live Tracking',
+  },
+  {
+    key: '/dashboard/shipper-dashboard/payments',
+    icon: <DollarOutlined />,
+    label: 'Payment History',
+  },
+ 
+  {
+    key: '/dashboard/shipper-dashboard/settings',
+    icon: <SettingOutlined />,
+    label: 'Settings',
+  },
+];
+
+
+
+export const carrierSidebarItems = [
+  {
+    key: '/dashboard/shipper-dashboard/overview',
+    icon: <AppstoreOutlined />,
+    label: 'Dashboard',
+  },
+  {
+    key: '/dashboard/shipper-dashboard/active-shipments',
+    icon: <UserOutlined />,
+    label: 'Active Shipments',
+  },
+  {
+    key: '/dashboard/shipper-dashboard/history',
+    icon: <UserOutlined />,
+    label: 'History',
+  },
+  {
+    key: '/dashboard/shipper-dashboard/live-tracking',
+    icon: <CarOutlined />,
+    label: 'Live Tracking',
+  },
+  {
+    key: '/dashboard/shipper-dashboard/payments',
+    icon: <DollarOutlined />,
+    label: 'Payment History',
+  },
+ 
+  {
+    key: '/dashboard/shipper-dashboard/settings',
+    icon: <SettingOutlined />,
+    label: 'Settings',
+  },
+];
+
+
+
