@@ -8,7 +8,6 @@ import Contact from './component/homepage/contact/Contact'
 import NavbarWithHero from './component/reusable/NavbarWithHero'
 import Footer from './component/homepage/footer/Footer'
 import DashboardHome from './component/dashboard/DashboardHome'
-import Login from './component/auth/login/Login'
 
 function App() {
   const  image = 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=1170&auto=format&fit=crop';
@@ -23,8 +22,7 @@ function App() {
     <AnsnQuestions />
     <Contact />
     <Footer /> */}
-    {/* <DashboardHome /> */}
-    <Login />
+    <DashboardHome />
 </div>
   )
 }
