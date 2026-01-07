@@ -1,40 +1,68 @@
-import React from 'react';
-import Navbar from '../homepage/Navbar/Navbar';
+import { useLocation } from "react-router-dom";
+import Navbar from "../homepage/Navbar/Navbar";
 
-const NavbarWithHero = ({image,subtitle,title}) => {
-    return (
-        <div>
-<div
-  style={{
-    backgroundImage: `url(${image})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    width: "100%",
-    minHeight: "95vh",
-  }}
-  className="relative"
->
+const NavbarWithHero = ({ image, subtitle, title }) => {
+  const location = useLocation();
+  const isServicePage =
+    location.pathname === "/carrier" ||
+    location.pathname === "/shipper" ||
+    location.pathname === "/agent-application";
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50 z-0"></div>
-      
-      <Navbar />
-      
-      <div className="flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center text-center gap-4 z-10">
-        <p className="text-[36px] robMed font-bold text-white">
-          {title}
-        </p>
-        <p className="text-[24px] robReg text-white">
-          {subtitle}
-        </p>
-        <button className="px-6 py-2 bg-white rounded-md">
-          Get Started
-        </button>
+  return (
+    <div>
+      <div
+        style={
+          isServicePage
+            ? { backgroundColor: "#F4F4F5" }
+            : {
+                backgroundImage: `url(${image})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }
+        }
+        className={`relative w-full min-h-[95vh] ${
+          isServicePage ? "" : "bg-black/50"
+        }`}
+      >
+        {/* Dark overlay only for non-service pages */}
+        {!isServicePage && (
+          <div className="absolute inset-0 bg-black/50 z-0"></div>
+        )}
+
+        <Navbar />
+
+        {/* Hero Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
+          <h1
+            className={`text-3xl md:text-[36px] leading-tight roboto ${
+              isServicePage
+                ? "text-black font-semibold"
+                : "text-white font-bold"
+            }`}
+          >
+            {title}
+          </h1>
+          <p
+            className={`text-lg md:text-[24px] mt-4 robReg max-w-[800px] ${
+              isServicePage ? "text-black" : "text-white"
+            }`}
+          >
+            {subtitle}
+          </p>
+          {location.pathname === "/agent-application" ? null : (
+            <button
+              className={`mt-8 px-8 py-3 ${
+                isServicePage ? "text-white bg-black" : "text-black bg-white"
+              } rounded-md text-lg font-medium`}
+            >
+              Get Started
+            </button>
+          )}
+        </div>
       </div>
     </div>
-        </div>
-    );
+  );
 };
 
 export default NavbarWithHero;

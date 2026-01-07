@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   FiSearch,
   FiMap,
@@ -6,59 +6,52 @@ import {
   FiTrendingUp,
   FiShield,
   FiBell,
-} from 'react-icons/fi'
-import { useLocation } from 'react-router-dom';
+} from "react-icons/fi";
+import { useLocation } from "react-router-dom";
 
 const features = [
   {
     icon: <FiSearch />,
-    title: 'Smart Load Discovery',
-    desc: 'Find profitable loads that match your truck type, location, and preferred routes using smart matching.',
+    title: "Smart Load Discovery",
+    desc: "Find profitable loads that match your truck type, location, and preferred routes using smart matching.",
   },
   {
     icon: <FiMap />,
-    title: 'Route Optimization',
-    desc: 'Maximize earnings and minimize empty miles with intelligent route planning.',
+    title: "Route Optimization",
+    desc: "Maximize earnings and minimize empty miles with intelligent route planning.",
   },
   {
     icon: <FiDollarSign />,
-    title: 'Instant Payments',
-    desc: 'Get paid faster with our quick-pay options. Choose same-day, next-day, or standard payment terms with transparent fee structures.',
+    title: "Instant Payments",
+    desc: "Get paid faster with our quick-pay options. Choose same-day, next-day, or standard payment terms with transparent fee structures.",
   },
   {
     icon: <FiTrendingUp />,
-    title: 'Fuel Cost Tracker',
-    desc: 'Monitor fuel expenses and optimize routes for better fuel efficiency. Access real-time fuel price comparisons along your route.',
+    title: "Fuel Cost Tracker",
+    desc: "Monitor fuel expenses and optimize routes for better fuel efficiency. Access real-time fuel price comparisons along your route.",
   },
   {
     icon: <FiShield />,
-    title: 'Load Insurance & Safety',
-    desc: 'All loads come with comprehensive cargo insurance. Verified shippers only, with rating system to ensure quality partnerships.',
+    title: "Load Insurance & Safety",
+    desc: "All loads come with comprehensive cargo insurance. Verified shippers only, with rating system to ensure quality partnerships.",
   },
   {
     icon: <FiBell />,
-    title: 'Real-Time Alerts',
-    desc: 'Never miss an opportunity with instant notifications for new loads, rate changes, and booking confirmations on your preferred routes.',
+    title: "Real-Time Alerts",
+    desc: "Never miss an opportunity with instant notifications for new loads, rate changes, and booking confirmations on your preferred routes.",
   },
-]
+];
 
-const Features = ({title,subTitle,featureData}) => {
- const location = useLocation();
-
-
-
+const Features = ({ title, subTitle, featureData }) => {
+  const location = useLocation();
 
   return (
     <section className="bg-white py-24">
       <div className="max-w-8xl mx-auto px-12">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-semibold">
-           {title}
-          </h2>
-          <p className="text-gray-500 mt-2">
-         {subTitle}
-          </p>
+          <h2 className="text-3xl font-semibold">{title}</h2>
+          <p className="text-gray-500 text-lg mt-2">{subTitle}</p>
         </div>
 
         {/* Features grid */}
@@ -74,9 +67,7 @@ const Features = ({title,subTitle,featureData}) => {
               </div>
 
               {/* Title */}
-              <h3 className="font-semibold mb-2">
-                {feature.title}
-              </h3>
+              <h3 className="font-semibold mb-2">{feature.title}</h3>
 
               {/* Description */}
               <p className="text-[16px] text-gray-600 robReg leading-relaxed">
@@ -87,7 +78,7 @@ const Features = ({title,subTitle,featureData}) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Features
+export default Features;
