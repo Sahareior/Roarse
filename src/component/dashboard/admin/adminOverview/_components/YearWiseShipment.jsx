@@ -26,15 +26,16 @@ const YearWiseShipment = () => {
         height: 350,
         background: "#fff",
         padding: 16,
+        paddingBottom: 40,
         borderRadius: 8,
         boxShadow: "0 0 8px rgba(0,0,0,0.08)",
       }}
     >
-      <h2 style={{ textAlign: "center", marginBottom: 16 }}>
+      <h2 className="text-xl arReg" style={{ textAlign: "", marginBottom: 16 }}>
         Year wise shipment
       </h2>
 
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer className='pt-6' width="100%" height="100%">
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="year" />

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { FaBox, FaPlane, FaShip, FaTruck } from 'react-icons/fa';
-import YearWiseShipment from './_components/YearWiseShipment';
-import MonthWiseShipment from './_components/MonthWiseShipment';
-import { IoCheckmarkDoneCircleSharp } from 'react-icons/io5';
+import { FaBox, FaPlane, FaPlus, FaShip, FaTruck } from 'react-icons/fa';
 import { IoIosTimer } from 'react-icons/io';
+import { IoCheckmarkDoneCircleSharp } from 'react-icons/io5';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
-// Enhanced OverviewStats component with different icons and types
+
 const OverviewStats = ({ type = "total", count = 122, label = "Total Shipments", subLabel = "Currently in transit" }) => {
     const getIcon = () => {
         switch(type) {
@@ -39,7 +38,6 @@ const OverviewStats = ({ type = "total", count = 122, label = "Total Shipments",
     );
 };
 
-// Enhanced RecentShipment component with more details and status indicators
 const RecentShipment = ({ 
     id,
     origin = "San Francisco, SA",
@@ -93,7 +91,7 @@ const RecentShipment = ({
     );
 };
 
-// Mock data for shipments
+
 const mockShipments = [
     {
         id: "SH-7845",
@@ -141,26 +139,29 @@ const mockShipments = [
     }
 ];
 
-// Enhanced AdminOverview component
-const AdminOverview = () => {
+
+const ShipperOverview = () => {
     const [shipments] = useState(mockShipments);
     const [filter, setFilter] = useState("all");
+    const location = useLocation()
 
     const filteredShipments = filter === "all" 
         ? shipments 
         : shipments.filter(shipment => shipment.status === filter);
 
-    const stats = [
+
+        const stats = [
         { type: "active", count: 122, label: "Active Shipments", subLabel: "Currently in transit" },
-        { type: "total", count: 24, label: "Total Shipments", subLabel: "Successfully delivered" },
-        { type: "booked", count: 18, label: "Upcoming Shipments", subLabel: "Booked Shipments" },
+        { type: "total", count: 24, label: "Completed", subLabel: "Successfully delivered" },
+        { type: "booked", count: 18, label: "Pending Matches", subLabel: "Finding Carriers" },
      
     ];
 
     return (
-        <div className='space-y-24 p-8'>
-            {/* Stats Overview */}
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+<div>
+{
+    location.pathname === '/dashboard/shipper-dashboard/overview'? (        <div>
+                      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {stats.map((stat, index) => (
                     <OverviewStats 
                         key={index}
@@ -172,14 +173,23 @@ const AdminOverview = () => {
                 ))}
             </div>
 
-            {/* Charts Section */}
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-                <YearWiseShipment />
-                <MonthWiseShipment />
-            </div>
+<div className='flex items-center rounded-xl text-white mt-7 justify-between py-7 px-5'
+style={{
+    background: 'linear-gradient(90deg, #3D3D3D 0%, #16171B 100%)'
+}}
+>
+   <div className='space-y-3'>
+     <p className='text-[20px] robReg'>Ready to Ship</p>
+    <p className='text-[16px] robReg'>Create a new shipment and get matched with carriers in minutes.</p>
+   </div>
+ <Link to="/dashboard/shipper-dashboard/overview/post-shipment">
+     <button className='px-6 py-[7px] hover:bg-white/70 bg-white text-black rounded-md gap-3 flex items-center'>
+   <FaPlus /> Post New Shipment
+   </button>
+ </Link>
+</div>
 
-            {/* Recent Shipments Section */}
-               <div className='border border-[#E5E7EB] p-4'>
+               <div className='border mt-10 border-[#E5E7EB] p-4'>
                 <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4'>
                     <h2 className='text-[20px] arReg font-bold'>Recent Shipments</h2>
    
@@ -201,8 +211,11 @@ const AdminOverview = () => {
                 </div>
 
             </div>
-        </div>
+
+        </div>) : (<Outlet />)
+}
+</div>
     );
 };
 
-export default AdminOverview;
+export default ShipperOverview;
