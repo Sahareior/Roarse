@@ -1,3 +1,4 @@
+// components/reusable/NavbarWithHero.jsx
 import Navbar from "../homepage/Navbar/Navbar";
 
 const NavbarWithHero = ({ image, subtitle, title }) => {
@@ -19,10 +20,17 @@ const NavbarWithHero = ({ image, subtitle, title }) => {
 
         <Navbar />
 
-        <div className="flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center text-center gap-4 z-10">
-          <p className="text-[36px] robMed font-bold text-white">{title}</p>
-          <p className="text-[24px] robReg text-white">{subtitle}</p>
-          <button className="px-6 py-2 bg-white rounded-md">Get Started</button>
+        
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
+          <h1 className="text-3xl md:text-[36px] font-bold text-white leading-tight robMed">
+            {title}
+          </h1>
+          <p className="text-lg md:text-[24px] text-white mt-4 robReg">
+            {subtitle}
+          </p>
+          <button className="mt-8 px-8 py-3 bg-white text-black rounded-md text-lg font-medium hover:bg-gray-200 transition">
+            Get Started
+          </button>
         </div>
       </div>
     </div>
