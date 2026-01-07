@@ -14,6 +14,7 @@ import AdminOverview from './component/dashboard/admin/adminOverview/AdminOvervi
 import Login from './component/auth/login/Login.jsx';
 import Signup from './component/auth/signup/Signup.jsx';
 import ForgotPassword from './component/auth/forgotPassword/ForgotPassword.jsx';
+import AgentApplication from './component/homepage/AgentApplication/AgentApplication.jsx';
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path:'carrier',
     element: <ServicesLayout />
+  },
+  {
+    path:'agent-application',
+    element: <AgentApplication />
   },
   {
     path:'login',
