@@ -1,61 +1,62 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import Header from '../../reusable/Header'
+import React from "react";
+import { useForm } from "react-hook-form";
+import Header from "../../reusable/Header";
+import { BiSearch } from "react-icons/bi";
 
 const Shipment_Filter = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data) => {
-    console.log('Form Data:', data)
-  }
+    console.log("Form Data:", data);
+  };
 
   // Input field configuration
   const formFields = [
     {
-      id: 'pickup',
-      label: 'Pickup',
-      placeholder: 'Germany',
-      type: 'text',
-      validation: { required: 'Pickup is required' },
-      colSpan: 'md:col-span-1'
+      id: "pickup",
+      label: "Pickup",
+      placeholder: "Germany",
+      type: "text",
+      validation: { required: "Pickup is required" },
+      colSpan: "md:col-span-1",
     },
     {
-      id: 'dropout',
-      label: 'Dropout',
-      placeholder: 'India',
-      type: 'text',
-      validation: { required: 'Dropout is required' },
-      colSpan: 'md:col-span-1'
+      id: "dropout",
+      label: "Dropout",
+      placeholder: "India",
+      type: "text",
+      validation: { required: "Dropout is required" },
+      colSpan: "md:col-span-1",
     },
     {
-      id: 'weight',
-      label: 'Weight',
-      placeholder: '1200',
-      type: 'number',
+      id: "weight",
+      label: "Weight",
+      placeholder: "1200",
+      type: "number",
       validation: {
-        required: 'Weight is required',
-        min: { value: 1, message: 'Weight must be positive' },
+        required: "Weight is required",
+        min: { value: 1, message: "Weight must be positive" },
       },
-      colSpan: 'md:col-span-1'
+      colSpan: "md:col-span-1",
     },
     {
-      id: 'goods',
-      label: 'Goods',
-      placeholder: 'Electronics',
-      type: 'text',
-      validation: { required: 'Goods type is required' },
-      colSpan: 'md:col-span-3'
-    }
-  ]
+      id: "goods",
+      label: "Goods",
+      placeholder: "Electronics",
+      type: "text",
+      validation: { required: "Goods type is required" },
+      colSpan: "md:col-span-3",
+    },
+  ];
 
   // Render input field
   const renderField = (field) => {
-    const { id, label, placeholder, type, validation, colSpan } = field
-    
+    const { id, label, placeholder, type, validation, colSpan } = field;
+
     return (
       <div key={id} className={`flex flex-col ${colSpan}`}>
         <label className="text-[16px] robReg mb-2 text-gray-700 font-bold">
@@ -73,34 +74,37 @@ const Shipment_Filter = () => {
           </span>
         )}
       </div>
-    )
-  }
+    );
+  };
 
   return (
-    <div className='py-12 px-4'>
-<Header title={'Send Your Shipment'} subTitle={' Provide your information and send your shipment'} />
+    <div className="py-12 px-4">
+      <Header
+        title={"Send Your Shipment"}
+        subTitle={" Provide your information and send your shipment"}
+      />
 
-<div className='px-14'>
-          <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="max-w-8xl  mx-auto bg-white p-8 rounded-xl shadow-lg"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {formFields.map(renderField)}
-        </div>
+      <div className="md:px-14">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="max-w-8xl mx-auto bg-white p-8 rounded-xl shadow-lg"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {formFields.map(renderField)}
+          </div>
 
-        <div className="flex justify-end mt-8">
-          <button
-            type="submit"
-            className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition duration-300 font-medium"
-          >
-            Save Shipment
-          </button>
-        </div>
-      </form>
-</div>
+          <div className="flex justify-end mt-8">
+            <button
+              type="submit"
+              className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition duration-300 font-medium flex items-center justify-center gap-1"
+            >
+              <BiSearch size={20} /> <span>Search</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Shipment_Filter
+export default Shipment_Filter;
