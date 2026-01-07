@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     element: <Quote />
   },
   {
-    path:'Carrier',
+    path:'carrier',
     element: <ServicesLayout />
   },
   {
