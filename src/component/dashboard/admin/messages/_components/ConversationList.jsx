@@ -23,9 +23,9 @@ const ConversationCard = () => {
 
 const ConversationList = () => {
     return (
-        <div>
+        <div className='h-[80vh] w-[60vw] overflow-y-auto'>
             {
-                [1, 2, 3, 4, 5].map((item) => (
+                [1, 2, 3, 4, 5,6,7,8,9,10,11,12,13,14].map((item) => (
                     <ConversationCard key={item} />
                 ))
             }

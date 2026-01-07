@@ -58,7 +58,7 @@ const DashboardHome = () => {
           theme="dark"
           mode="inline"
           selectedKeys={[location.pathname]}
-          items={shipperSidebarItems}
+          items={adminSidebarItems}
           onClick={({ key }) => {
             if (key !== 'settings') {
               navigate(key);
