@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     element: <TransportsLayout />
   },
   {
-    path:'Shipper',
+    path:'shipper',
     element: <ServicesLayout />
   },
   {

@@ -8,9 +8,11 @@ import { useLocation } from "react-router-dom";
 import { FiTrendingUp } from "react-icons/fi";
 import { IoNotificationsOutline, IoSearch } from "react-icons/io5";
 import { TbRoute } from "react-icons/tb";
-import { BsCurrencyDollar } from "react-icons/bs";
+import { BsCurrencyDollar, BsGraphUp } from "react-icons/bs";
 import { GiFuelTank } from "react-icons/gi";
 import { LuWaves } from "react-icons/lu";
+import { PiGasCan, PiShippingContainerDuotone } from "react-icons/pi";
+import { FaShip } from "react-icons/fa";
 
 const ServicesLayout = () => {
   const location = useLocation();
@@ -47,7 +49,7 @@ const ServicesLayout = () => {
         desc: "Get paid faster with our quick-pay options. Choose same-day, next-day, or standard payment terms with transparent fee structures.",
       },
       {
-        icon: <GiFuelTank />,
+        icon: <PiGasCan />,
         title: "Fuel Cost Tracker",
         desc: "Monitor fuel expenses and optimize routes for better fuel efficiency. Access real-time fuel price comparisons along your route.",
       },
@@ -72,32 +74,32 @@ const ServicesLayout = () => {
 
     featrureData = [
       {
-        icon: <FiTrendingUp />,
+        icon: <IoSearch />,
         title: "AI- Powered Carrier Matching",
         desc: "Instantly find verified carriers that match your shipment requirements using our intelligent matching algorithm. ",
       },
       {
-        icon: <FiTrendingUp />,
+        icon: <PiShippingContainerDuotone />,
         title: "Competitive Rate Marketplace",
         desc: "Compare real-time quotes from multiple carriers and choose the best rate for your budget. ",
       },
       {
-        icon: <FiTrendingUp />,
+        icon: <FaShip />,
         title: "Real Time Shipment Tracking",
         desc: "Monitor your cargos location 24/7 with live GPS tracking. Get automated updates at every milestone.",
       },
       {
-        icon: <FiTrendingUp />,
+        icon: <BsGraphUp />,
         title: "Analytics & Reporting",
         desc: "Access comprehensive dashboards with shipment history, cost analysis, carrier performance metrics.",
       },
       {
-        icon: <FiTrendingUp />,
+        icon: <LuWaves />,
         title: "Digital Documentation",
         desc: "Manage all shipping documents digitally including BOLs, PODs, invoices, and customs paperwork. ",
       },
       {
-        icon: <FiTrendingUp />,
+        icon: <IoNotificationsOutline />,
         title: "Smart Notification",
         desc: "Receive instant alerts for shipment status changes, delays, delivery confirmations, and new carrier matches via email, SMS, or in-app.",
       },
