@@ -89,7 +89,7 @@ const TransportMode = () => {
           </p>
           <TextArea
           className="robReg"
-            rows={4}
+            rows={5}
             placeholder="Temperature control, fragile items, etc."
             value={notes}
             onChange={(e) => setNotes(e.target.value)}

@@ -96,6 +96,7 @@ const router = createBrowserRouter([
     path: "Quote",
     element: <Quote />,
   },
+  
   {
     path: "carrier",
     element: <ServicesLayout />,
