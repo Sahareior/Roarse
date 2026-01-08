@@ -19,7 +19,7 @@ import { LuMessageSquare } from 'react-icons/lu';
 import { IoIosPaper } from 'react-icons/io';
 import { SlPlane } from 'react-icons/sl';
 import { IoExitOutline } from 'react-icons/io5';
-import { adminSidebarItems, shipperSidebarItems } from '../../tools/dashboardNavigation';
+import { adminSidebarItems, agentSidebarItems, carrierSidebarItems, shipperSidebarItems } from '../../tools/dashboardNavigation';
 import DashboardHeader from '../reusable/dashboard/DashboardHeader';
 
 
@@ -58,7 +58,7 @@ const DashboardHome = () => {
           theme="dark"
           mode="inline"
           selectedKeys={[location.pathname]}
-          items={adminSidebarItems}
+          items={shipperSidebarItems}
           onClick={({ key }) => {
             if (key !== 'settings') {
               navigate(key);

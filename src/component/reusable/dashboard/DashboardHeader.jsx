@@ -20,19 +20,25 @@ const DashboardHeader = () => {
           </div>
 
           <div className='flex items-center gap-3'>
-{user !== 'admin' && (
+{/* shipper-dashboard/subscription */}
   <>
-    <p className="text-[14px] p-[10px] bg-[#79797980] text-white rounded-full robReg">
+   {
+    user === 'shipper' && (
+      <Link to='/dashboard/shipper-dashboard/subscription'>
+       <p className="text-[14px] p-[10px] bg-[#79797980] text-white rounded-full robReg">
       <IoDiamondOutline size={20} />
     </p>
+      </Link>
+    )
+   }
 
-  <Link to='/shipper-dashboard/notifications'>
+  <Link to='notifications'>
     <p className="text-[14px] p-[10px] bg-[#79797980] text-white rounded-full robReg">
       <FaRegBell size={20} />
     </p>
   </Link>
   </>
-)}
+
 
            <Link to="/dashboard/profile">
             <Avatar size={40} icon={<UserOutlined />} />

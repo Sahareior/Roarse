@@ -12,6 +12,9 @@ import {
 } from '@ant-design/icons';
 import { LuMessageSquare } from 'react-icons/lu';
 import { IoIosPaper } from 'react-icons/io';
+import { FiCheckSquare, FiClock, FiDollarSign, FiFileText, FiGrid, FiInbox, FiMessageSquare, FiSettings, FiTruck } from 'react-icons/fi';
+import { AiFillWallet } from 'react-icons/ai';
+import { FaHackerNews, FaWallet } from 'react-icons/fa';
 
 // Export icons individually if needed
 export {
@@ -137,35 +140,88 @@ export const shipperSidebarItems = [
 
 export const carrierSidebarItems = [
   {
-    key: '/dashboard/shipper-dashboard/overview',
-    icon: <AppstoreOutlined />,
-    label: 'Dashboard',
+    key: "/dashboard/carrier-dashboard/overview",
+    icon: <FiGrid />,
+    label: "Dashboard",
   },
   {
-    key: '/dashboard/shipper-dashboard/active-shipments',
-    icon: <UserOutlined />,
-    label: 'Active Shipments',
+    key: "/dashboard/carrier-dashboard/active-deliveries",
+    icon: <FiTruck />,
+    label: "Active Deliveries",
   },
   {
-    key: '/dashboard/shipper-dashboard/history',
-    icon: <UserOutlined />,
-    label: 'History',
+    key: "/dashboard/carrier-dashboard/incoming-shipments",
+    icon: <FiInbox />,
+    label: "Incoming Shipments",
   },
   {
-    key: '/dashboard/shipper-dashboard/live-tracking',
-    icon: <CarOutlined />,
-    label: 'Live Tracking',
+    key: "/dashboard/carrier-dashboard/history",
+    icon: <FiClock />,
+    label: "Delivery History",
   },
   {
-    key: '/dashboard/shipper-dashboard/payments',
-    icon: <DollarOutlined />,
-    label: 'Payment History',
+    key: "/dashboard/carrier-dashboard/payments",
+    icon: <FiDollarSign />,
+    label: "Payments",
   },
- 
   {
-    key: '/dashboard/shipper-dashboard/settings',
-    icon: <SettingOutlined />,
-    label: 'Settings',
+    key: "/dashboard/carrier-dashboard/messages",
+    icon: <FiMessageSquare />,
+    label: "Messages",
+  },
+  {
+    key: "/dashboard/carrier-dashboard/shipment-req",
+    icon: <FiFileText />,
+    label: "Shipment Requests",
+  },
+  {
+    key: "/dashboard/carrier-dashboard/assinged-tasks",
+    icon: <FiCheckSquare />,
+    label: "Assigned Tasks",
+  },
+  {
+    key: "/dashboard/carrier-dashboard/settings",
+    icon: <FiSettings />,
+    label: "Settings",
+  },
+];
+
+
+export const agentSidebarItems = [
+  {
+    key: "/dashboard/agent-dashboard/agent-overview",
+    icon: <FiGrid />,
+    label: "Dashboard",
+  },
+  {
+    key: "/dashboard/agent-dashboard/agent-messages",
+    icon: <FiMessageSquare />,
+    label: "Messages",
+  },
+  {
+    key: "/dashboard/agent-dashboard/shipment-req",
+    icon: <FiFileText />,
+    label: "Shipment Requests",
+  },
+  {
+    key: "/dashboard/agent-dashboard/assinged-tasks",
+    icon: <FiCheckSquare />,
+    label: "Assigned Tasks",
+  },
+  {
+    key: "/dashboard/agent-dashboard/agent-wallet",
+    icon: <FaWallet />,
+    label: "Wallet",
+  },
+  {
+    key: "/dashboard/agent-dashboard/agent-history",
+    icon: <FiClock />,
+    label: "History",
+  },
+  {
+    key: "/dashboard/agent-dashboard/agent-settings",
+    icon: <FiSettings />,
+    label: "Settings",
   },
 ];
 
