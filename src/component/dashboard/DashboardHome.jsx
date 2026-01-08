@@ -72,20 +72,7 @@ const DashboardHome = () => {
           </div>
       <Layout>
    <DashboardHeader />
-        {/* <div className='flex justify-between py-4 px-9 bg-[#E2E2E2]'>
-          <div className='flex items-center gap-2'>
-            <p className='text-[32px] arBold'>WelCome</p>
-            <p className='text-2xl'>,</p>
-            <p className='text-[20px] arReg text-gray-600 mt-1'>Admin Dashboard</p>
-          </div>
 
-          <div className='flex items-center gap-3'>
-            <p className='text-[14px] robReg'>Admin</p>
-           <Link to="/dashboard/profile">
-            <Avatar size={40} icon={<UserOutlined />} />
-           </Link>
-          </div>
-        </div> */}
         <Content style={{ margin: '6px' }}>
           <div
             className="h-[87vh] overflow-auto"

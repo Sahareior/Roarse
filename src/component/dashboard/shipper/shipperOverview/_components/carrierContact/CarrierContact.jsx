@@ -29,7 +29,7 @@ const CarrierContact = () => {
   return (
 <div>
     {
-        location.pathname === '/dashboard/shipper-dashboard/overview/post-shipment/:shipmentId/carrier-contact' ? (    <div className="max-w-8xl mx-auto p-6 space-y-6">
+        location.pathname === '/dashboard/shipper-dashboard/overview/post-shipment/:shipmentId/carrier-contact' ? (    <div className="max-w-8xl mx-auto p-1  space-y-6">
 
       {/* Back */}
       <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700">

@@ -37,7 +37,7 @@ import ShipperHistory from "./component/dashboard/shipper/history/ShipperHistory
 import LiveTracking from "./component/dashboard/shipper/liveTracking/LiveTracking.jsx";
 import ShipperPayment from "./component/dashboard/shipper/shipperPayment/ShipperPayment.jsx";
 import ShipperSettings from "./component/dashboard/shipper/Settings/ShipperSettings.jsx";
-import PostShipments from "./component/dashboard/shipper/shipperOverview/_components/PostShipments.jsx";
+import PostShipments from "./component/reusable/QuoteSteps/PostShipments.jsx";
 import ShippingDetails from "./component/dashboard/shipper/activeShipment/_components/ShippingDetails.jsx";
 import ShipperIndividualLiveTracking from "./component/dashboard/shipper/liveTracking/_compoents/ShipperIndividualLiveTracking.jsx";
 import ShippingHistoryDetails from "./component/dashboard/shipper/history/_components/ShippingHistoryDetails.jsx";

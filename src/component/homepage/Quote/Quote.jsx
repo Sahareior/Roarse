@@ -1,5 +1,5 @@
 import React from 'react';
-import PostShipments from '../../dashboard/shipper/shipperOverview/_components/PostShipments';
+import PostShipments from '../../reusable/QuoteSteps/PostShipments';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../footer/Footer';
 
