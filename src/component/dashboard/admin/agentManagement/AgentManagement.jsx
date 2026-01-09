@@ -31,7 +31,7 @@ const AgentManagement = () => {
 ];
     return (
         <div>
-          <CarrierNShipperManagement data={mockCarriers} />
+          <CarrierNShipperManagement from={'Agent'} data={mockCarriers} />
         </div>
     );
 };
