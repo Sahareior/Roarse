@@ -6,7 +6,7 @@ const { Option } = Select;
 /* -------------------- Small Helpers -------------------- */
 
 const Field = ({ label, children }) => (
-  <div className="space-y-1">
+  <div className="space-y-1 w-full">
     <p className="text-[15px] robReg  text-gray-600">{label}</p>
     {children}
   </div>
@@ -14,7 +14,7 @@ const Field = ({ label, children }) => (
 
 /* -------------------- Main Component -------------------- */
 
-const ShipmentDetails = () => {
+const ShipmentDetails = ({location}) => {
   const [form, setForm] = useState({
     from: "",
     to: "",
@@ -84,10 +84,12 @@ const ShipmentDetails = () => {
           </Select>
         </Field>
 
-        <div className="md:col-span-2">
+    
+      </div>
+    <div className="flex w-full mt-6 gap-9 justify-between">
           <Field label="Dimensions (optional)">
             <Input
-            className="py-2 rounded-xl border border-[#D1D5DC]"
+            className="py-2 w-full rounded-xl border border-[#D1D5DC]"
               placeholder="L × W × H (cm)"
               value={form.dimensions}
               onChange={(e) =>
@@ -95,9 +97,23 @@ const ShipmentDetails = () => {
               }
             />
           </Field>
-        </div>
-      </div>
 
+{
+  location.pathname === '/quote' && (
+                      <Field label="Phone No">
+          <Input
+          className="py-2 rounded-xl"
+            type="number"
+            placeholder="1000"
+            value={form.weight}
+            onChange={(e) =>
+              setForm({ ...form, weight: e.target.value })
+            }
+          />
+        </Field>
+  )
+}
+        </div>
 
     </div>
   );

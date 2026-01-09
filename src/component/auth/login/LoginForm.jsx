@@ -11,9 +11,23 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log("Login Data:", data);
+    console.log("Login Data:", data.email);
+
+    if(data?.email === 'admin@gmail.com'){
+      localStorage.setItem('roarseRole', 'admin')
+    }
+    if(data?.email === 'shipper@gmail.com'){
+      localStorage.setItem('roarseRole', 'shipper')
+    }
+    if(data?.email === 'carrier@gmail.com'){
+      localStorage.setItem('roarseRole', 'carrier')
+    }
+    if(data?.email === 'agent@gmail.com'){
+      localStorage.setItem('roarseRole', 'agent')
+    }
+    
     // Redirect to home page after "login"
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (
@@ -25,7 +39,7 @@ const LoginForm = () => {
         </p>
 
         {/* Role Selection */}
-        <div className="flex gap-4 mb-8 flex-wrap">
+        {/* <div className="flex gap-4 mb-8 flex-wrap">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="radio"
@@ -57,7 +71,7 @@ const LoginForm = () => {
             />
             <span>As an Agent</span>
           </label>
-        </div>
+        </div> */}
 
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

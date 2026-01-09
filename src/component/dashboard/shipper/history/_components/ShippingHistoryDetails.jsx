@@ -44,10 +44,64 @@ const PriceRow = ({ label, value, isTotal = false }) => {
   );
 };
 
+const TimelineItem = ({ isLast, title, location, date, description }) => {
+  return (
+    <div className="flex gap-4">
+      {/* Left (Dot + Line) */}
+      <div className="flex flex-col items-center">
+        <div className="h-8 w-8 rounded-full bg-black flex items-center justify-center">
+          <FaCheck className="text-white text-sm" />
+        </div>
+
+        {!isLast && (
+          <div className="w-[2px] h-16 bg-black  mt-1" />
+        )}
+      </div>
+
+      {/* Right (Content) */}
+      <div className="pb-8">
+        <p className="text-[16px] font-normal text-[#101828]">
+          {title}
+        </p>
+        <p className="text-[14px] text-[#475467]">
+          {location}
+        </p>
+        <p className="text-[13px] text-[#667085]">
+          {date}
+        </p>
+        <p className="text-[14px] text-[#344054] mt-1">
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const CustomTimeline = ({ data }) => {
+  return (
+    <div className="bg-white border rounded-xl p-6">
+      <p className="text-[18px] font-medium text-[#101828] mb-6">
+        Shipment Timeline
+      </p>
+
+      <div>
+        {data.map((item, index) => (
+          <TimelineItem
+            key={index}
+            {...item}
+            isLast={index === data.length - 1}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
 const Card = ({ title, icon: Icon, children, extra }) => (
   <div className="bg-white border rounded-xl p-6 space-y-4">
     <div className="flex items-center justify-between">
-      <div className="flex  items-center gap-2 text-[20px] robReg font-semibold text-gray-900">
+      <div className="flex  items-center gap-2 text-[20px] robReg  text-gray-900">
         <Icon className="text-gray-600 " />
         {title}
       </div>
@@ -60,7 +114,7 @@ const Card = ({ title, icon: Icon, children, extra }) => (
 const InfoBlock = ({ label, value }) => (
   <div>
     <p className="text-sm robReg text-gray-500">{label}</p>
-    <p className="text-[18px] robReg font-medium text-gray-900">{value}</p>
+    <p className="text-[18px] robReg  text-gray-900">{value}</p>
   </div>
 );
 
@@ -140,7 +194,7 @@ const TransportDetails = () => {
             date="Picked up: 10/12/2024"
           />
           
-          <div className='h-6 w-[0.5px] bg-gray-300 mx-2' />
+          <div className='h-9 w-[2px] bg-[#121212] mx-2' />
           
           <RouteInfo
             type="To"
@@ -210,7 +264,7 @@ const ShippingHistoryDetails = () => {
   ];
 
   return (
-    <div className=''>
+    <div className='robReg'>
       {/* Success Banner */}
       <div className='p-5 bg-[#F0FDF4] border-2 border-[#BBF7D0] rounded-lg mb-6'>
         <p className='text-[#0D542B] text-[18px] robReg mb-1'>
@@ -284,22 +338,9 @@ const ShippingHistoryDetails = () => {
           </div>
         </Card>
 
-        {/* Timeline Section */}
-        <Timeline
-        className="bg-white border rounded-xl p-6"
-          mode="left"
-          items={timelineData.map((item) => ({
-            dot: <TimelineDot />,
-            children: (
-              <TimelineContent
-                title={item.title}
-                location={item.location}
-                date={item.date}
-                description={item.description}
-              />
-            ),
-          }))}
-        />
+{/* Timeline Section */}
+<CustomTimeline data={timelineData} />
+
       </div>
 <button className='px-8 py-2 bg-black text-white flex items-center gap-2 rounded-xl mt-4'>
   <FaDownload />  Download Invoice

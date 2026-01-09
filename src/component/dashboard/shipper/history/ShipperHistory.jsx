@@ -13,9 +13,9 @@ const StatusBadge = ({ status }) => (
 );
 
 const InfoRow = ({ icon: Icon, text }) => (
-  <div className="flex items-center gap-2 text-xs text-gray-500">
+  <div className="flex items-center gap-2 text-sm text-gray-500">
     <Icon className="text-sm" />
-    <span>{text}</span>
+    <span className="font-medium">{text}</span>
   </div>
 );
 
@@ -49,12 +49,12 @@ const ShipmentItem = ({ shipment }) => (
     </div>
 
     {/* Right */}
-    <div className="text-right space-y-2">
-      <p className="text-sm font-semibold text-gray-900">
+    <div className="flex items-center justify-center flex-col space-y-2">
+      <p className="text-[20px] font-semibold text-gray-900">
         ${shipment.price}
       </p>
       <Link to={`/dashboard/shipper-dashboard/history/${shipment.id}`}>
-      <button className="text-xs text-gray-600 hover:text-black font-medium">
+      <button className="text-sm text-gray-600 hover:text-black font-medium">
         View Details
       </button>
       </Link>
@@ -123,7 +123,7 @@ const location = useLocation();
   return (
  <div>
     {
-        location.pathname === '/dashboard/shipper-dashboard/history' ? (   <div className="max-w-8xl mx-auto p-6 bg-gray-50 min-h-screen space-y-6">
+        location.pathname === '/dashboard/shipper-dashboard/history' ? (   <div className="max-w-8xl mx-auto p-1 bg-gray-50 min-h-screen space-y-6">
       
       {/* Header */}
       <div className="flex items-center justify-between">

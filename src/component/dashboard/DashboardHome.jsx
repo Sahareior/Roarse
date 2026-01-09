@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu, theme, Dropdown, Avatar } from "antd";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
@@ -20,6 +20,8 @@ import { SlPlane } from "react-icons/sl";
 import { IoExitOutline } from "react-icons/io5";
 import {
   adminSidebarItems,
+  agentSidebarItems,
+  carrierSidebarItems,
   shipperSidebarItems,
 } from "../../tools/dashboardNavigation";
 import DashboardHeader from "../reusable/dashboard/DashboardHeader";
@@ -27,10 +29,35 @@ import DashboardHeader from "../reusable/dashboard/DashboardHeader";
 const DashboardHome = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [role, setRole] = useState("");
+  const getRole = localStorage.getItem("roarseRole");
+  useEffect(() => {
+    setRole(getRole);
+  }, [getRole]);
 
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const getRoleBasedSidebar = () => {
+    if (role === "admin") {
+      return adminSidebarItems;
+    }
+    if (role === "shipper") {
+      return shipperSidebarItems;
+    }
+    if (role === "carrier") {
+      return carrierSidebarItems;
+    }
+    if (role === "agent") {
+      return agentSidebarItems;
+    }
+  };
+
+  const handelLogout = () => {
+    localStorage.removeItem("roarseRole");
+    navigate("/");
+  };
 
   return (
     <Layout className="relative" style={{ minHeight: "100vh" }}>
@@ -38,6 +65,7 @@ const DashboardHome = () => {
         width={250}
         breakpoint="lg"
         collapsedWidth="0"
+        
         style={{
           background: "linear-gradient(90deg, #3D3D3D 0%, #16171B 100%)",
         }}
@@ -61,7 +89,7 @@ const DashboardHome = () => {
           theme="dark"
           mode="inline"
           selectedKeys={[location.pathname]}
-          items={shipperSidebarItems}
+          items={getRoleBasedSidebar()}
           onClick={({ key }) => {
             if (key !== "settings") {
               navigate(key);
@@ -70,32 +98,21 @@ const DashboardHome = () => {
         />
       </Sider>
       <div className="bottom-4 translate-x-1/2 absolute">
-        <p className="flex text-white text-[18px] items-center gap-2">
+        <button
+          onClick={() => handelLogout()}
+          className="flex text-white text-[18px] items-center gap-2"
+        >
           <IoExitOutline /> Logout
-        </p>
+        </button>
       </div>
       <Layout>
         <DashboardHeader />
-        {/* <div className='flex justify-between py-4 px-9 bg-[#E2E2E2]'>
-          <div className='flex items-center gap-2'>
-            <p className='text-[32px] arBold'>WelCome</p>
-            <p className='text-2xl'>,</p>
-            <p className='text-[20px] arReg text-gray-600 mt-1'>Admin Dashboard</p>
-          </div>
 
-          <div className='flex items-center gap-3'>
-            <p className='text-[14px] robReg'>Admin</p>
-           <Link to="/dashboard/profile">
-            <Avatar size={40} icon={<UserOutlined />} />
-           </Link>
-          </div>
-        </div> */}
         <Content style={{ margin: "6px" }}>
           <div
-            className="min-h-[87vh] overflow-auto"
+            className="h-[87vh] overflow-auto"
             style={{
               padding: 12,
-
               overflowY: "auto",
               borderRadius: borderRadiusLG,
             }}

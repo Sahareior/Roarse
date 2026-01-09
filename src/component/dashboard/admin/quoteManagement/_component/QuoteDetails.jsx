@@ -6,7 +6,7 @@ import DocumentItem from "../../../../reusable/dashboard/DocumentItem";
 const Section = ({ icon, title, children }) => (
   <div className="space-y-3">
     <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-      <span>{icon}</span>
+      <span className="text-[#1C398E]">{icon}</span>
       <span className="text-[16px] robReg">{title}</span>
     </div>
     {children}
@@ -15,8 +15,8 @@ const Section = ({ icon, title, children }) => (
 
 const Item = ({ label, value }) => (
   <div>
-    <p className="text-xs robReg text-gray-500">{label}</p>
-    <p className="text-sm robReg font-medium">{value}</p>
+    <p className="text-[16px] robReg text-gray-500">{label}</p>
+    <p className="text-[20px] robReg font-medium">{value}</p>
   </div>
 );
 

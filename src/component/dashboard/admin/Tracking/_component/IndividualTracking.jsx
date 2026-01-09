@@ -1,4 +1,5 @@
 import React from "react";
+import { SlLocationPin } from "react-icons/sl";
 
 const StatusItem = ({ title, time, active }) => (
   <div className="flex items-start gap-3">
@@ -12,18 +13,18 @@ const StatusItem = ({ title, time, active }) => (
       >
         ✓
       </span>
-      <div className="h-6 w-px bg-gray-300 mt-1" />
+      {active ? <div className="h-14 w-[2px] bg-green-300 mt-1" /> : <div className="h-14 w-[2px] bg-slate-300 mt-1" />}
     </div>
     <div>
       <p
-        className={`text-sm font-medium ${
+        className={`text-[16px] font-medium ${
           active ? "text-gray-900" : "text-gray-400"
         }`}
       >
         {title}
       </p>
       {time && (
-        <p className="text-xs text-gray-500">{time}</p>
+        <p className="text-sm text-gray-500">{time}</p>
       )}
     </div>
   </div>
@@ -31,14 +32,14 @@ const StatusItem = ({ title, time, active }) => (
 
 const DetailItem = ({ label, value }) => (
   <div>
-    <p className="text-xs text-gray-500">{label}</p>
-    <p className="text-sm font-medium">{value}</p>
+    <p className="text-sm text-gray-500">{label}</p>
+    <p className="text-[16px] font-medium">{value}</p>
   </div>
 );
 
 const IndividualTracking = () => {
   return (
-    <div className="p-6 max-w-8xl mx-auto space-y-6">
+    <div className="p-6 max-w-8xl robReg mx-auto space-y-6">
       {/* Back */}
       <a className="text-[21px]  robReg text-gray-600 cursor-pointer">
         ← Back
@@ -46,10 +47,10 @@ const IndividualTracking = () => {
 
       {/* Header */}
       <div>
-        <h1 className="text-lg font-semibold">
+        <h1 className="text-[24px] font-medium">
           Track Shipment
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-[16px] text-gray-500">
           Real-time tracking and status updates
         </p>
       </div>
@@ -57,7 +58,7 @@ const IndividualTracking = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Map */}
         <div className="lg:col-span-2 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-6 flex flex-col items-center justify-center text-center">
-          <div className="text-blue-700 text-4xl">📍</div>
+          <div className="text-blue-700 text-4xl"><SlLocationPin size={48} /></div>
           <p className="mt-2 text-sm font-medium">
             Live map tracking
           </p>
@@ -71,7 +72,7 @@ const IndividualTracking = () => {
 
         {/* Status */}
         <div className="bg-white border rounded-xl p-5 space-y-4">
-          <h3 className="text-sm font-medium">
+          <h3 className="text-[16px] robReg font-medium">
             Shipment Status
           </h3>
 
@@ -98,11 +99,11 @@ const IndividualTracking = () => {
       {/* Details */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-white border rounded-xl p-5">
-          <h3 className="text-sm font-medium mb-4">
+          <h3 className="text-[16px] robReg font-medium mb-4">
             Shipment Details
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
             <DetailItem label="Tracking ID" value="#S7" />
             <DetailItem
               label="Route"
