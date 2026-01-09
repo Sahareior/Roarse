@@ -15,7 +15,7 @@ const TrackingRow = ({ route, status, details, price }) => {
       </div>
 
       <div className="text-right space-y-1">
-        <p className="text-sm robReg font-medium">{price}</p>
+        <p className="text-xl robReg font-medium">{price}</p>
      <Link to="/dashboard/tracking/TRK-1024">
         <button className="text-[14px] text-[#1C398E] robReg hover:underline">
           Track

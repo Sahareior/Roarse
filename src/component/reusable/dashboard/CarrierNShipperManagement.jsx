@@ -1,69 +1,31 @@
 import { Popover } from "antd";
 import React, { useState } from "react";
 import { CiFilter } from "react-icons/ci";
-import { FaPlane, FaShip, FaTruck } from "react-icons/fa";
+import { FaPlane, FaShip, FaTruck, FaUser } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa6";
+import { GiCancel } from "react-icons/gi";
+import { HiCheckBadge } from "react-icons/hi2";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-const mockShippers = Array.from({ length: 8 }).map((_, i) => {
-  // Define 3 types
-  const types = ['air', 'road', 'sea'];
-  const type = types[i % 3];
-  
-  // Get appropriate icon for each type
-  const getIconForType = (type) => {
-    switch(type) {
-      case 'air':
-        return <FaPlane className="text-blue-500" />;
-      case 'sea':
-        return <FaShip className="text-blue-700" />;
-      case 'road':
-        return <FaTruck className="text-green-600" />;
-      default:
-        return <FaTruck className="text-gray-500" />;
+const CarrierNShipperManagement = ({ from, data }) => {
+  const [search, setSearch] = useState("");
+  const [shippers, setShippers] = useState(data);
+
+  const location = useLocation();
+
+  const getFiltterOpt = () => {
+    if (from === "Carrier") {
+      return ["Road", "Air", "Sea"];
+    } else {
+      return ["Verified", "Unverified"];
     }
   };
 
-  // Different names for variety
-  const names = [
-    "John Abraham", 
-    "Sarah Johnson", 
-    "Michael Chen", 
-    "Emma Wilson", 
-    "David Brown", 
-    "Lisa Rodriguez", 
-    "Robert Taylor", 
-    "Maria Garcia"
-  ];
-
-
-
-  return {
-    id: `SH-0${i + 1}${i}`,
-    name: names[i],
-
-    type: type,
-    typeLabel: type.charAt(0).toUpperCase() + type.slice(1), // 'air' -> 'Air'
-    icon: getIconForType(type),
-    active: i % 4 !== 0, // Make some inactive for variety
-   
-  };
-});
-
-const CarrierNShipperManagement = () => {
-  const [search, setSearch] = useState("");
-  const [shippers, setShippers] = useState(mockShippers);
-  const [open, setOpen] = useState(false);
-  const location = useLocation();
-  
-  const hide = () => {
-    setOpen(false);
-  };
-  const handleOpenChange = newOpen => {
-    setOpen(newOpen);
-  };
-
-
-  const isMainPage = location.pathname === '/dashboard/shipper' || location.pathname === '/dashboard/carriers' || location.pathname === '/dashboard/carrier-management' || location.pathname === '/dashboard/agents';
+  const isMainPage =
+    location.pathname === "/dashboard/shipper" ||
+    location.pathname === "/dashboard/carriers" ||
+    location.pathname === "/dashboard/carrier-management" ||
+    location.pathname === "/dashboard/agents";
 
   const toggleStatus = (index) => {
     setShippers((prev) =>
@@ -81,8 +43,10 @@ const CarrierNShipperManagement = () => {
     <div>
       {isMainPage ? (
         <div className="p-6 max-w-8xl mx-auto">
-          <h1 className="text-xl robMed font-semibold">Shipper Management</h1>
-          
+          <h1 className="text-xl robMed font-semibold">
+            {from === "Carrier" ? "Carrier" : "Shipper"} Management
+          </h1>
+
           <div className="flex py-8 justify-between">
             {/* Search */}
             <input
@@ -93,57 +57,59 @@ const CarrierNShipperManagement = () => {
               className="w-1/4 py-2 px-7 border rounded-2xl text-sm"
             />
 
-<Popover
-  trigger="click"
-  placement="bottomRight"
-  content={
-    <div
-      onClick={(e) => e.stopPropagation()}
-      className="space-y-2 w-24"
-    >
-      {['Road', 'Air', 'Sea'].map((type) => (
-        <label
-          key={type}
-          className="flex items-center gap-2 cursor-pointer"
-        >
-          <input
-            type="checkbox"
-            value={type}
-            className="cursor-pointer"
-          />
-          <span>{type}</span>
-        </label>
-      ))}
-    </div>
-  }
->
-  <button className="border border-black px-5 py-1 rounded text-sm flex items-center gap-1">
-    <CiFilter /> Filter
-  </button>
-</Popover>
-
-
-
+            <Popover
+              trigger="click"
+              placement="bottomRight"
+              content={
+                <div
+                  onClick={(e) => e.stopPropagation()}
+                  className="space-y-2 w-24"
+                >
+                  {getFiltterOpt()?.map((type) => (
+                    <label
+                      key={type}
+                      className="flex items-center gap-2 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        value={type}
+                        className="cursor-pointer"
+                      />
+                      <span>{type}</span>
+                    </label>
+                  ))}
+                </div>
+              }
+            >
+              <button className="border border-black px-5 py-1 rounded text-sm flex items-center gap-1">
+                <CiFilter /> Filter <FaChevronDown className="ml-7" />
+              </button>
+            </Popover>
           </div>
 
-          <p className="arReg text-[20px] py-4 pb-7">Shipper Lists</p>
+          <p className="arReg text-[20px] py-4 pb-7">
+            {from === "Carrier" ? "Carrier" : "Shipper"} Lists
+          </p>
+
+          <div className=" w-full mb-8 bg-[#E5E7EB] h-[0.6px]" />
 
           {/* List */}
           <div className="space-y-3">
             {filteredShippers.map((shipper, index) => (
               <div
                 key={shipper.id}
-                className="flex justify-between items-center border rounded-lg px-4 py-3 hover:bg-gray-50 transition-colors"
+                className="flex justify-between items-center border-2  rounded-lg px-4 py-3 hover:bg-gray-50 transition-colors"
               >
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-medium robReg text-[16px]">{shipper.name}</span>
-   
+                    <span className="font-medium robReg flex items-center gap-2 text-[16px]">
+                      {shipper.name} {shipper.verified? <HiCheckBadge className="text-[#8BC34A] text-[18px]" />:<GiCancel className="text-red-500" />}
+                    </span>
                   </div>
-                  <p className="text-xs robReg flex items-center gap-3 text-gray-500 mt-1">
+                  <p className="text-sm mt-1 robReg flex items-center gap-3 text-gray-500 mt-1">
                     ID: {shipper.id}
-                    <p className="flex items-center gap-2">
-                                      {shipper.icon}   {shipper.type}
+                    <p className="flex  items-center gap-2">
+                      {shipper.icon} {shipper.userType} {shipper.type}
                     </p>
                   </p>
                 </div>

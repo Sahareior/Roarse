@@ -8,7 +8,7 @@ import { UserOutlined } from '../../../tools/dashboardNavigation';
 
 const DashboardHeader = () => {
 
-    const user = 'shipper'; // This can be 'admin' or 'shipper'
+    const user = localStorage.getItem('roarseRole')
 
     return (
         <div>
@@ -16,7 +16,7 @@ const DashboardHeader = () => {
           <div className='flex items-center gap-2'>
             <p className='text-[32px] arBold'>WelCome</p>
             <p className='text-2xl'>,</p>
-            <p className='text-[20px] arReg text-gray-600 mt-1'>{user === 'admin' ? 'Admin' : 'Shipper'} Dashboard</p>
+            <p className='text-[20px] arReg text-gray-600 mt-1 uppercase'>{user} Dashboard</p>
           </div>
 
           <div className='flex items-center gap-3'>

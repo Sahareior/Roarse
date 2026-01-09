@@ -154,7 +154,7 @@ location.pathname === '/dashboard/payments' ? (
       <div className="flex justify-center">
         <button
           onClick={() => setActiveTab("history")}
-          className={`py-2 px-14 w-[40vw] rounded-l-2xl ${
+          className={`py-4 text-sm px-14 w-[40vw] rounded-l-2xl ${
             activeTab === "history"
               ? "bg-black text-white"
               : "bg-gray-200"
@@ -164,7 +164,7 @@ location.pathname === '/dashboard/payments' ? (
         </button>
         <button
           onClick={() => setActiveTab("pay")}
-          className={`py-2 px-14 w-[40vw] rounded-r-2xl ${
+          className={`py-4 text-sm px-14 w-[40vw] rounded-r-2xl ${
             activeTab === "pay"
               ? "bg-black text-white"
               : "bg-gray-200"

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaArrowLeft, FaCheckCircle, FaFileArchive } from "react-icons/fa";
+import { FaArrowLeft, FaCheckCircle, FaFileArchive, FaRegFileAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { FiBox, FiClock, FiDollarSign } from "react-icons/fi";
 import { Link, Outlet, useLocation } from "react-router-dom";
@@ -10,7 +10,7 @@ const DocumnentCards = () => {
   return (
       <div className="flex border p-4 justify-between">
   <div className="flex items-center gap-2 ">
-    <p className="p-2 rounded-2xl bg-[#6A7282]"><FaFileArchive /></p>
+    <p className="p-3 rounded-2xl bg-[#F3F4F6]"><FaRegFileAlt size={18} /></p>
     <div>
       <p className="text-[16px] ">Business Licence</p>
       <p className="text-xs text-[#6A7282]">Uploaded: 10/12/25</p>

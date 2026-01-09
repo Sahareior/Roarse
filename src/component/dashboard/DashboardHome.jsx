@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Menu, theme, Dropdown, Avatar } from 'antd';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
@@ -26,14 +26,37 @@ import DashboardHeader from '../reusable/dashboard/DashboardHeader';
 const DashboardHome = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [role,setRole] = useState('')
+const getRole = localStorage.getItem('roarseRole')
 
+useEffect(()=> {
+  setRole(getRole)
+},[getRole])
 
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+const getRoleBasedSidebar = () => {
+  if(role === 'admin'){
+    return adminSidebarItems
+  }
+  if(role === 'shipper'){
+    return shipperSidebarItems
+  }
+  if(role === 'carrier'){
+    return carrierSidebarItems
+  }
+  if(role === 'agent'){
+    return agentSidebarItems
+  }
+}
 
 
+const handelLogout =()=> {
+  localStorage.removeItem('roarseRole')
+  navigate('/')
+}
 
   return (
     <Layout className='relative' style={{ minHeight: '100vh' }}>
@@ -58,7 +81,7 @@ const DashboardHome = () => {
           theme="dark"
           mode="inline"
           selectedKeys={[location.pathname]}
-          items={shipperSidebarItems}
+          items={getRoleBasedSidebar()}
           onClick={({ key }) => {
             if (key !== 'settings') {
               navigate(key);
@@ -68,7 +91,7 @@ const DashboardHome = () => {
       </Sider>
           <div className='bottom-4 translate-x-1/2 absolute'>
           
-            <p className='flex text-white text-[18px] items-center gap-2'><IoExitOutline /> Logout</p>
+            <button onClick={()=> handelLogout()} className='flex text-white text-[18px] items-center gap-2'><IoExitOutline /> Logout</button>
           </div>
       <Layout>
    <DashboardHeader />

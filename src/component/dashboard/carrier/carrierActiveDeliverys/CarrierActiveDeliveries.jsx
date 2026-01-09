@@ -5,6 +5,15 @@ import { Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 const OverViewCard = ({title}) => {
+const status = ['In-transit', 'delivered', 'confirm','cancelled']
+
+const getRandomStatus = () => {
+    const randomIndex = Math.round(Math.random()*status.length)
+    console.log(randomIndex,'ramdom status')
+    return status[randomIndex]
+}
+
+// getRandomStatus()
     return(
         <div className='border border-[#E5E7EB] py-4'>
             <p className='robReg text-[20px] px-5'>{title}</p>
@@ -17,7 +26,7 @@ const OverViewCard = ({title}) => {
                     <div >
                         <div className='flex text-[16.5px] robReg items-center gap-3'>
                             <p className='flex items-center gap-2'>India <FaArrowRight /> Bangladesh</p>
-                            <p className='text-[#1447E6] p-1 px-3 rounded-2xl bg-[#DBEAFE]'>Road</p>
+                            <p className='text-[#1447E6] p-1 px-3 rounded-2xl bg-[#DBEAFE]'>{getRandomStatus()}</p>
                         </div>
                         <p className='text-[#4A5565] text-[14.1px] robReg'>800kg | Industrial</p>
                     </div>
@@ -25,7 +34,7 @@ const OverViewCard = ({title}) => {
                 <div className='flex items-center gap-4'>
                     <div>
                         <p className='text-[#1C398E] text-[24px] robReg'>$200</p>
-                        <p className='text-[14px] robReg'>Estimated</p>
+                        {/* <p className='text-[14px] robReg'>Estimated</p> */}
                     </div>
                    <Link to='/dashboard/carrier-dashboard/active-deliveries/:deliveryId'>
                     <button className='py-2 px-6 rounded-md bg-black text-white'>Updated Status</button>

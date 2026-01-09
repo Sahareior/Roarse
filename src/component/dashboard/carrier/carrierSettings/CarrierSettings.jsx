@@ -50,18 +50,20 @@ const DocumentsRow =({label}) => (
   </div>
 )
 
-const Stat = ({ value, label, highlight }) => (
+const Stat = ({ value, label, highlight, color }) => (
   <div className="text-center">
     <p
-      className={`text-lg font-semibold ${
-        highlight ? "text-green-500" : "text-white"
-      }`}
+      className="text-lg font-semibold"
+      style={{
+        color: highlight ? "#22c55e" : color,
+      }}
     >
       {value}
     </p>
     <p className="text-xs text-gray-300">{label}</p>
   </div>
 );
+
 
 /* -------------------- Main Component -------------------- */
 
@@ -74,17 +76,17 @@ const CarrierSettings = () => {
                 <div className="max-w-8xl mx-auto p-1 ">
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-black to-gray-900  p-6 text-white border-b flex justify-between items-center">
+      <div className="bg-gradient-to-r from-black robReg to-gray-900  p-6 text-white border-b flex justify-between ">
         <div className="flex items-center gap-4">
           <div className="h-12 w-12 rounded-full bg-white text-black flex items-center justify-center font-semibold">
             JS
           </div>
           <div>
-            <p className="text-lg font-semibold">John Smith</p>
-            <p className="text-sm text-gray-300">
+            <p className="text-lg robReg">John Smith</p>
+            <p className="text-[16px] text-gray-300">
               Global Express Logistics
             </p>
-            <div className="flex items-center gap-2 text-xs text-gray-300 mt-1">
+            <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
               <FaStar className="text-yellow-400" />
               4.9 • 376 reviews • 342 deliveries
             </div>
@@ -101,10 +103,10 @@ const CarrierSettings = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-black  p-4">
-        <Stat value="338" label="Completed" />
+        <Stat color={'#FFFF12'} value="338" label="Completed" />
         <Stat value="98.5%" label="On-Time Rate" highlight />
-        <Stat value="4.9" label="Average Rating" />
-        <Stat value="Jun 2024" label="Member Since" />
+        <Stat color={'#F54900'} value="4.9" label="Average Rating" />
+        <Stat color={'#FFFFFF'} value="Jun 2024" label="Member Since" />
       </div>
 
       {/* Main Grid */}

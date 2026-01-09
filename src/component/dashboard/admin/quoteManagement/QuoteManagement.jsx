@@ -7,7 +7,7 @@ const QuoteCard =() => {
         <div className="border border-gray-300 flex justify-between items-center rounded-lg p-4">
           <div>
               <h3 className="text-[16px] font-semibold robReg mb-2">Route: India-Bangladesh (Road)</h3>
-            <div className='flex gap-8 text-[16px] robReg'>
+            <div className='flex gap-12 text-[16px] robReg'>
                 <p>Weight : 100kg</p>
                 <p>Category : Electromic</p>
             </div>

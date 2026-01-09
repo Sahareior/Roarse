@@ -15,6 +15,7 @@ import { IoIosPaper } from 'react-icons/io';
 import { FiCheckSquare, FiClock, FiDollarSign, FiFileText, FiGrid, FiInbox, FiMessageSquare, FiSettings, FiTruck } from 'react-icons/fi';
 import { AiFillWallet } from 'react-icons/ai';
 import { FaHackerNews, FaWallet } from 'react-icons/fa';
+import { MdSupportAgent } from 'react-icons/md';
 
 // Export icons individually if needed
 export {
@@ -68,7 +69,7 @@ export const adminSidebarItems = [
   },
   {
     key: '/dashboard/agents',
-    icon: <EnvironmentOutlined />,
+    icon: <MdSupportAgent size={18}/>,
     label: 'Agent Management',
   },
   {
@@ -164,21 +165,7 @@ export const carrierSidebarItems = [
     icon: <FiDollarSign />,
     label: "Payments",
   },
-  {
-    key: "/dashboard/carrier-dashboard/messages",
-    icon: <FiMessageSquare />,
-    label: "Messages",
-  },
-  {
-    key: "/dashboard/carrier-dashboard/shipment-req",
-    icon: <FiFileText />,
-    label: "Shipment Requests",
-  },
-  {
-    key: "/dashboard/carrier-dashboard/assinged-tasks",
-    icon: <FiCheckSquare />,
-    label: "Assigned Tasks",
-  },
+
   {
     key: "/dashboard/carrier-dashboard/settings",
     icon: <FiSettings />,

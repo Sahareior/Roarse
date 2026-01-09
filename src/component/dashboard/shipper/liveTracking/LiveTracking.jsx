@@ -15,9 +15,9 @@ const TrackingRow = ({ route, status, details, price }) => {
       </div>
 
       <div className="text-right space-y-1">
-        <p className="text-sm robReg font-medium">{price}</p>
+        <p className="text-[18px] robReg font-medium">{price}</p>
      <Link to="/dashboard/shipper-dashboard/live-tracking/12345">
-        <button className="text-[14px] text-[#1C398E] robReg hover:underline">
+        <button className="text-[16px] mt-1 text-[#1C398E] robReg hover:underline">
           Track
         </button>
      </Link>
@@ -39,7 +39,7 @@ const LiveTracking = () => {
 <div>
     {
         location.pathname === '/dashboard/shipper-dashboard/live-tracking' ? (
-                <div className="p-6 max-w-8xl mx-auto">
+                <div className="p-1 max-w-8xl mx-auto">
       <div className="bg-white border rounded-xl p-5">
         <h2 className="text-[20px] border-b-2 border-slate-300 pb-3 arMed font-medium mb-4">
           Live Tracking

@@ -269,6 +269,12 @@ const router = createBrowserRouter([
           {
             path: ":shipment-details",
             element: <ShippingDetails />,
+                children: [
+               {
+            path: ":trackingId",
+            element: <ShipperIndividualLiveTracking />,
+          },
+            ]
           },
         ],
       },
@@ -292,6 +298,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+      
       {
         path: "shipper-dashboard/payments",
         element: <ShipperPayment />,
@@ -319,6 +326,7 @@ const router = createBrowserRouter([
           {
             path: ":deliveryId",
             element: <CareerUpdateDeliveriStatus />,
+        
           },
         ],
       },
@@ -371,6 +379,12 @@ const router = createBrowserRouter([
       {
         path: "agent-dashboard/agent-overview",
         element: <AgentOverview />,
+         children: [
+          {
+            path: ":shipmentReqId",
+            element: <CarrierShipmentReqDetails />,
+          },
+        ],
       },
       {
         path: "agent-dashboard/agent-messages",

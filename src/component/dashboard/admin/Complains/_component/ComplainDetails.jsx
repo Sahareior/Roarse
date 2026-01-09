@@ -3,11 +3,11 @@ import { FaPaperclip } from "react-icons/fa";
 
 const InfoRow = ({ label, value, isLink }) => (
   <div className="flex gap-2 justify-between text-sm">
-    <span className="text-gray-500 robReg min-w-[120px]">{label}</span>
+    <span className="text-gray-500 text-[15.5px] robReg min-w-[120px]">{label}</span>
     {isLink ? (
-      <a className="text-blue-600 robReg font-medium">{value}</a>
+      <a className="text-blue-600 robReg ">{value}</a>
     ) : (
-      <span className="font-medium robReg">{value}</span>
+      <span className="font-medium text-[16px] robReg">{value}</span>
     )}
   </div>
 );
@@ -29,7 +29,7 @@ const ComplainDetails = () => {
               Pending
             </span>
           </div>
-          <span className="text-xs text-gray-500">
+          <span className="text-sm robReg text-gray-500">
             2025-12-04 10:30
           </span>
         </div>
@@ -37,7 +37,7 @@ const ComplainDetails = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Complainer */}
           <div className="space-y-2">
-            <h3 className="text-[17px] robReg font-medium">
+            <h3 className="text-[17px] robReg mb-3">
               Complainer Information
             </h3>
             <InfoRow label="Name:" value="Jane Doe (Shipper)" />
@@ -51,7 +51,7 @@ const ComplainDetails = () => {
 
           {/* Accused */}
           <div className="space-y-2">
-            <h3 className="text-[17px] robReg font-medium">
+            <h3 className="text-[17px] robReg mb-3">
               Accused Details
             </h3>
             <InfoRow label="Client:" value="John (Carrier)" />

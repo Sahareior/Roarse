@@ -4,6 +4,8 @@ import { FaArrowRight, FaBox, FaPlane, FaShip, FaTruck } from 'react-icons/fa';
 import { IoCheckmarkDoneCircleSharp } from 'react-icons/io5';
 import { IoIosTimer } from 'react-icons/io';
 import { FaLocationPin } from 'react-icons/fa6';
+import { Link, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 // Enhanced OverviewStats component with different icons and types
 const OverviewStats = ({ type = "total", count = 122, label = "Total Shipments", subLabel = "Currently in transit" }) => {
@@ -21,18 +23,23 @@ const OverviewStats = ({ type = "total", count = 122, label = "Total Shipments",
             case "air": return "text-blue-600";
             case "booked": return "text-yellow-600";
             case "total": return "text-green-600";
-            default: return "text-gray-700";
+            default: return "text-[#F54900]";
         }
     };
 
     return (
         <div className='flex  justify-between border border-[#E5E7EB] p-6 rounded-xl hover:shadow-md transition-shadow duration-300'>
             <div className='flex flex-col gap-3'>
-                <div className={`${getColor()}`}>
+                <div
+                style={{
+                    padding:4,
+                    backgroundColor: getColor()/40
+                }}
+                className={`${getColor()}`}>
                     {getIcon()}
                 </div>
                 <h2 className='text-[16px] font-medium'>{label}</h2>
-                <p className='text-[14px] text-gray-500'>{subLabel}</p>
+                <p className='text-[15px] text-gray-500'>{subLabel}</p>
             </div>
             <p className='text-[30px] font-bold'>{count.toLocaleString()}</p>
         </div>
@@ -64,7 +71,9 @@ const OverViewCard = ({title}) => {
                         <p className='text-[#1C398E] text-[24px] robReg'>$200</p>
                         <p className='text-[14px] robReg'>Estimated</p>
                     </div>
+                    <Link to='/dashboard/agent-dashboard/agent-overview/:shipmentReqId'>
                     <button className='py-2 px-6 rounded-md bg-black text-white'>View Details</button>
+                    </Link>
                 </div>
             </div>
     ))
@@ -77,18 +86,21 @@ const OverViewCard = ({title}) => {
 
 // Enhanced AgentOverview component
 const AgentOverview = () => {
-
+const location = useLocation()
 
 
     const stats = [
-        { type: "active", count: 122, label: "Active Shipments", subLabel: "Currently in transit" },
-        { type: "total", count: 24, label: "Total Shipments", subLabel: "Successfully delivered" },
-        { type: "booked", count: 18, label: "Upcoming Shipments", subLabel: "Booked Shipments" },
+        { type: "active", count: 122, label: "New Requests", subLabel: "Pending your response" },
+        { type: "total", count: 24, label: "Active Deliveries", subLabel: "In Progress" },
+        { type: "booked", count: 18, label: "Total Earnings", subLabel: "This Month" },
      
     ];
 
     return (
-        <div className='space-y-24 p-8'>
+<div>
+    {
+        location.pathname === '/dashboard/agent-dashboard/agent-overview'? (
+                    <div className='space-y-24 p-1'>
             {/* Stats Overview */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {stats.map((stat, index) => (
@@ -108,6 +120,9 @@ const AgentOverview = () => {
 
 
         </div>
+        ):(<Outlet />)
+    }
+</div>
     );
 };
 
