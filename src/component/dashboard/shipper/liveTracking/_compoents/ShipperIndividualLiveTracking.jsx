@@ -4,12 +4,7 @@ import { FaMessage, FaPhone } from "react-icons/fa6";
 import { GiCardboardBoxClosed } from "react-icons/gi";
 
 const StatusItem = ({ title, time, active }) => (
-<<<<<<< HEAD
-  <div className="flex items-start gap-3">
-    
-=======
   <div className="flex items-start w-full gap-3">
->>>>>>> 709e08f17260989e2b6afb17bf04f72e823b861d
     <div className="flex flex-col items-center">
       <span
         className={`w-7 h-7 rounded-full flex items-center justify-center text-xs ${
