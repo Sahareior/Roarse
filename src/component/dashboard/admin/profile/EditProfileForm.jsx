@@ -12,18 +12,42 @@ const EditProfileForm = ({ defaultValues, onSave, onCancel }) => {
   });
 
   const [fileName, setFileName] = useState("No File Chosen");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setSelectedFile(file);
       setFileName(file.name);
     } else {
+      setSelectedFile(null);
       setFileName("No File Chosen");
     }
   };
 
   const onSubmit = (data) => {
-    onSave(data);
+    // Create FormData object
+    const formData = new FormData();
+
+    // Append text fields
+    formData.append("fullName", data.fullName);
+    formData.append("email", data.email);
+    if (data.phoneNumber) formData.append("phoneNumber", data.phoneNumber);
+    if (data.location) formData.append("location", data.location);
+
+    // Append the image file if selected
+    if (selectedFile) {
+      formData.append("profilePhoto", selectedFile); // Key: "profilePhoto", Value: File object
+    }
+
+    // Log FormData contents (for debugging - note: you can't log FormData directly)
+    console.log("FormData contents:");
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
+    // Pass the FormData to parent (for API upload)
+    onSave(formData);
   };
 
   return (
@@ -62,7 +86,6 @@ const EditProfileForm = ({ defaultValues, onSave, onCancel }) => {
 
       {/* Phone Number & Location */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Phone Number */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1.5">
             Phone Number
@@ -75,7 +98,6 @@ const EditProfileForm = ({ defaultValues, onSave, onCancel }) => {
           />
         </div>
 
-        {/* Location */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1.5">
             Location
@@ -107,6 +129,7 @@ const EditProfileForm = ({ defaultValues, onSave, onCancel }) => {
               accept="image/*"
               className="hidden"
               onChange={handleFileChange}
+              // Removed {...register("profilePhoto")} — not needed for files in RHF
             />
           </label>
           <span className="px-4 py-2.5 text-sm text-gray-600 truncate flex-1">

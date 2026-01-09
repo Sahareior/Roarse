@@ -25,7 +25,6 @@ const InfoItem = ({ icon, label, value }) => (
   </div>
 );
 
-
 const Profile = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -41,12 +40,30 @@ const Profile = () => {
     setIsEditModalOpen(true);
   };
 
-  const handleSaveProfile = (data) => {
-    console.log("Profile saved:", data);
-    // Update profile data (in real app, you would send to API)
-    setProfileData(data);
+  const handleSaveProfile = (formData) => {
+    // formData is now a FormData object containing all fields + file
+
+    // Example: Send to backend
+    // axios.post("/api/profile/update", formData, {
+    //   headers: { "Content-Type": "multipart/form-data" }
+    // })
+
+    console.log("Ready to upload with FormData:");
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
+    // Update local state (optional - only text fields, since File can't be stored long-term)
+    // You'd typically get updated profile + photo URL from backend after upload
     setIsEditModalOpen(false);
   };
+
+  // const handleSaveProfile = (data) => {
+  //   console.log("Profile saved:", data);
+  //   // Update profile data (in real app, you would send to API)
+  //   setProfileData(data);
+  //   setIsEditModalOpen(false);
+  // };
 
   const handleCancelEdit = () => {
     setIsEditModalOpen(false);
@@ -58,7 +75,10 @@ const Profile = () => {
       <div className="relative bg-gradient-to-r from-black to-gray-600 rounded-xl h-28">
         <div className="absolute -bottom-10 left-6 flex items-center gap-4">
           <div className="w-20 h-20 rounded-full shadow-md bg-black text-white flex items-center justify-center text-xl border-4 border-white">
-            {profileData.fullName?.split(" ").map(n => n[0]).join("") || "AU"}
+            {profileData.fullName
+              ?.split(" ")
+              .map((n) => n[0])
+              .join("") || "AU"}
           </div>
           <div className="mt-11">
             <h2 className="font-semibold arReg text-lg">
@@ -71,7 +91,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <button 
+        <button
           onClick={handleEditProfile}
           className="absolute top-4 right-4 bg-black text-white px-4 py-1.5 rounded text-xs flex items-center gap-2 hover:bg-gray-800 transition-colors"
         >
@@ -114,9 +134,7 @@ const Profile = () => {
               value={profileData.location}
             />
             <div className="flex flex-col gap-3">
-              <span className="text-xs text-gray-500">
-                Status
-              </span>
+              <span className="text-xs text-gray-500">Status</span>
               <span className="text-xs px-3 w-16 py-0.5 rounded-full bg-green-100 text-green-700">
                 Active
               </span>
