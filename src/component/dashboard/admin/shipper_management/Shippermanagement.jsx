@@ -31,7 +31,7 @@ const Shippermanagement = () => {
 
     return (
         <div>
-            <CarrierNShipperManagement data={mockShippers} />
+            <CarrierNShipperManagement data={mockShippers} from={'Shipper'} />
         </div>
     );
 };

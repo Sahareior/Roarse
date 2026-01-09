@@ -14,7 +14,7 @@ const CarrierNShipperManagement = ({ from, data }) => {
   const location = useLocation();
 
   const getFiltterOpt = () => {
-    if (from === "Carrier") {
+    if (from === "Carrier"|| from === "Agent") {
       return ["Road", "Air", "Sea"];
     } else {
       return ["Verified", "Unverified"];
@@ -44,14 +44,14 @@ const CarrierNShipperManagement = ({ from, data }) => {
       {isMainPage ? (
         <div className="p-6 max-w-8xl mx-auto">
           <h1 className="text-xl robMed font-semibold">
-            {from === "Carrier" ? "Carrier" : "Shipper"} Management
+            {from } Management
           </h1>
 
           <div className="flex py-8 justify-between">
             {/* Search */}
             <input
               type="text"
-              placeholder="Search Shipper"
+              placeholder={`Search ${from}`}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-1/4 py-2 px-7 border rounded-2xl text-sm"

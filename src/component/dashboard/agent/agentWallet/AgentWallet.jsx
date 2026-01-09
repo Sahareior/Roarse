@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaArrowLeft,
   FaCheckCircle,
@@ -7,31 +7,45 @@ import {
   FaUniversity,
 } from "react-icons/fa";
 import { FiTrendingUp } from "react-icons/fi";
+import ReusableModal from "../../../reusable/modal/ReusableModal";
+import AgentSettingPayoutModal from "./modalComponent/AgentSettingPayoutModal";
+import SijanModal from "../../../reusable/sijanModal/SijanModal";
 
 /* -------------------- Helpers -------------------- */
 
-const StatCard = ({ title, value, subtitle, icon, highlight }) => (
+const StatCard = ({
+  title,
+  value,
+  subtitle,
+  icon,
+  highlight,
+  setPayoutOpen,
+}) => (
   <div
     className={`rounded-xl robReg p-5 border space-y-2 ${
       highlight ? "bg-green-500 text-white border-green-500" : "bg-white"
     }`}
   >
     <div className="flex justify-between items-center">
-        <p className="p-3 bg-[#EFF6FF] text-[#9810FA] rounded-full"> {icon}</p>
-        <p className="bg-[#FAF5FF] p-3 text-[#155DFC] rounded-full"> {icon}</p>
+      <p className="p-3 bg-[#EFF6FF] text-[#9810FA] rounded-full"> {icon}</p>
+      <p className="bg-[#FAF5FF] p-3 text-[#155DFC] rounded-full"> {icon}</p>
     </div>
     <div className="flex justify-between pt-4 items-center">
       <p className="text-sm">{title}</p>
-     
     </div>
     <p className="text-2xl font-semibold">{value}</p>
     {subtitle && (
-      <p className={`text-xs ${highlight ? "text-green-100" : "text-[#6A7282]"}`}>
+      <p
+        className={`text-xs ${highlight ? "text-green-100" : "text-[#6A7282]"}`}
+      >
         {subtitle}
       </p>
     )}
     {highlight && (
-      <button className="mt-2 w-full bg-white text-green-600 text-sm py-1.5 rounded-lg">
+      <button
+        onClick={() => setPayoutOpen(true)}
+        className="mt-2 w-full bg-white text-green-600 text-sm py-1.5 rounded-lg"
+      >
         Request Payout
       </button>
     )}
@@ -63,7 +77,9 @@ const PayoutRow = ({ item }) => (
       </div>
 
       <div>
-        <p className="text-sm gap-2 flex mb-1 font-medium">${item.amount} <StatusBadge status={item.status} /></p>
+        <p className="text-sm gap-2 flex mb-1 font-medium">
+          ${item.amount} <StatusBadge status={item.status} />
+        </p>
         <p className="text-[14px] text-gray-500">{item.method}</p>
         <p className="text-xs text-gray-400">
           {item.shipments} shipments • Ref: {item.ref}
@@ -72,7 +88,6 @@ const PayoutRow = ({ item }) => (
     </div>
 
     <div className="text-right space-y-1">
-      
       <p className="text-xs text-gray-400">{item.date}</p>
       <p className="text-xs text-gray-400">{item.time}</p>
     </div>
@@ -82,6 +97,7 @@ const PayoutRow = ({ item }) => (
 /* -------------------- Main Component -------------------- */
 
 const AgentWallet = () => {
+  const [payoutOpen, setPayoutOpen] = useState(false);
   const payouts = [
     {
       amount: "2,800",
@@ -123,7 +139,6 @@ const AgentWallet = () => {
 
   return (
     <div className="max-w-8xl mx-auto p-1 space-y-6">
-
       {/* Back */}
       <button className="flex items-center gap-2 text-sm text-gray-500">
         <FaArrowLeft /> Back to Payment
@@ -145,6 +160,7 @@ const AgentWallet = () => {
           subtitle="Ready for payout"
           icon={<FiTrendingUp />}
           highlight
+          setPayoutOpen={setPayoutOpen}
         />
         <StatCard
           title="Processing"
@@ -168,7 +184,6 @@ const AgentWallet = () => {
 
       {/* Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
         {/* Payout History */}
         <div className="lg:col-span-2 bg-white border rounded-xl p-5">
           <p className="text-[20px] arReg  font-medium mb-4">Payout History</p>
@@ -179,7 +194,6 @@ const AgentWallet = () => {
 
         {/* Right Column */}
         <div className="space-y-6">
-
           {/* Monthly Summary */}
           <div className="bg-white border robReg rounded-xl p-5 space-y-2">
             <p className="text-[16px] font-medium">This Month</p>
@@ -219,6 +233,13 @@ const AgentWallet = () => {
           </div>
         </div>
       </div>
+
+
+      <SijanModal
+      onClose={() => setPayoutOpen(false)}
+      isOpen={payoutOpen}
+      children={ <AgentSettingPayoutModal  onClose={() => setPayoutOpen(false)} />}
+      />
     </div>
   );
 };

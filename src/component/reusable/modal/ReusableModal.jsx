@@ -7,6 +7,7 @@ const ReusableModal = ({ open, onClose, title, children, footer }) => {
       title={title}
       onCancel={onClose}
       footer={footer}
+        maskClosable={false}
       centered
     >
       {children}
