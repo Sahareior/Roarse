@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import React from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const TrackingRow = ({ route, status, details, price }) => {
   return (
@@ -11,23 +11,25 @@ const TrackingRow = ({ route, status, details, price }) => {
             {status}
           </span>
         </div>
-        <p className="text-[14px] mt-2 font-semibold text-[#4A5565]">{details}</p>
+        <p className="text-[14px] mt-2 font-semibold text-[#4A5565]">
+          {details}
+        </p>
       </div>
 
       <div className="text-right space-y-1">
         <p className="text-sm robReg font-medium">{price}</p>
-     <Link to="/dashboard/shipper-dashboard/live-tracking/12345">
-        <button className="text-[14px] text-[#1C398E] robReg hover:underline">
-          Track
-        </button>
-     </Link>
+        <Link to="/dashboard/shipper-dashboard/live-tracking/12345">
+          <button className="text-[14px] text-[#1C398E] robReg hover:underline">
+            Track
+          </button>
+        </Link>
       </div>
     </div>
   );
 };
 
 const LiveTracking = () => {
-    const location = useLocation()
+  const location = useLocation();
   const trackingData = Array.from({ length: 6 }).map(() => ({
     route: "San Francisco, CA → Denver, CO",
     status: "in-transit",
@@ -35,27 +37,27 @@ const LiveTracking = () => {
     price: "$3,400",
   }));
 
-    return (
-<div>
-    {
-        location.pathname === '/dashboard/shipper-dashboard/live-tracking' ? (
-                <div className="p-6 max-w-8xl mx-auto">
-      <div className="bg-white border rounded-xl p-5">
-        <h2 className="text-[20px] border-b-2 border-slate-300 pb-3 arMed font-medium mb-4">
-          Live Tracking
-        </h2>
+  return (
+    <div>
+      {location.pathname === "/dashboard/shipper-dashboard/live-tracking" ? (
+        <div className="p-6 max-w-8xl mx-auto">
+          <div className="bg-white border rounded-xl p-5">
+            <h2 className="text-[20px] border-b-2 border-slate-300 pb-3 arMed font-medium mb-4">
+              Live Tracking
+            </h2>
 
-        <div className="divide-y">
-          {trackingData.map((item, index) => (
-            <TrackingRow key={index} {...item} />
-          ))}
+            <div className="divide-y">
+              {trackingData.map((item, index) => (
+                <TrackingRow key={index} {...item} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <Outlet />
+      )}
     </div>
-        ): (<Outlet />)
-    }
-</div>
-    );
+  );
 };
 
 export default LiveTracking;

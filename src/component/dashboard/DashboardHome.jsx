@@ -61,7 +61,7 @@ const DashboardHome = () => {
           theme="dark"
           mode="inline"
           selectedKeys={[location.pathname]}
-          items={adminSidebarItems}
+          items={shipperSidebarItems}
           onClick={({ key }) => {
             if (key !== "settings") {
               navigate(key);
@@ -92,7 +92,7 @@ const DashboardHome = () => {
         </div> */}
         <Content style={{ margin: "6px" }}>
           <div
-            className="h-[87vh] overflow-auto"
+            className="min-h-[87vh] overflow-auto"
             style={{
               padding: 12,
 
