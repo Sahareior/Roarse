@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaUser,
   FaEnvelope,
@@ -8,14 +8,17 @@ import {
   FaClock,
   FaUserShield,
   FaEdit,
+  FaCamera,
 } from "react-icons/fa";
+import ReusableModal from "../../../reusable/modal/ReusableModal";
+import EditProfileForm from "./EditProfileForm";
 
 const InfoItem = ({ icon, label, value }) => (
   <div className="flex items-start gap-3">
     <div>
       <p className="text-[14px] robReg text-gray-500">{label}</p>
       <div className="flex gap-2 mt-1 items-center">
-    <span className="text-gray-500 ">{icon}</span>
+        <span className="text-gray-500">{icon}</span>
         <p className="text-sm robReg text-[#101828] font-medium">{value}</p>
       </div>
     </div>
@@ -23,17 +26,63 @@ const InfoItem = ({ icon, label, value }) => (
 );
 
 const Profile = () => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  // Default profile data
+  const [profileData, setProfileData] = useState({
+    fullName: "Admin User",
+    email: "admin@urgenttrodes.com",
+    phoneNumber: "+1 (555) 123-4567",
+    location: "San Francisco, CA",
+  });
+
+  const handleEditProfile = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleSaveProfile = (formData) => {
+    // formData is now a FormData object containing all fields + file
+
+    // Example: Send to backend
+    // axios.post("/api/profile/update", formData, {
+    //   headers: { "Content-Type": "multipart/form-data" }
+    // })
+
+    console.log("Ready to upload with FormData:");
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
+    // Update local state (optional - only text fields, since File can't be stored long-term)
+    // You'd typically get updated profile + photo URL from backend after upload
+    setIsEditModalOpen(false);
+  };
+
+  // const handleSaveProfile = (data) => {
+  //   console.log("Profile saved:", data);
+  //   // Update profile data (in real app, you would send to API)
+  //   setProfileData(data);
+  //   setIsEditModalOpen(false);
+  // };
+
+  const handleCancelEdit = () => {
+    setIsEditModalOpen(false);
+  };
+
   return (
     <div className="max-w-8xl mx-auto space-y-6">
       {/* Header */}
       <div className="relative bg-gradient-to-r from-black to-gray-600 rounded-xl h-28">
         <div className="absolute -bottom-10 left-6 flex items-center gap-4">
           <div className="w-20 h-20 rounded-full shadow-md bg-black text-white flex items-center justify-center text-xl border-4 border-white">
-            AU
+            {profileData.fullName
+              ?.split(" ")
+              .map((n) => n[0])
+              .join("") || "AU"}
           </div>
           <div className="mt-11">
             <h2 className="font-semibold arReg text-lg">
-              Admin User
+              {profileData.fullName}
             </h2>
             <p className="text-xs text-gray-500 flex items-center gap-1">
               <FaUserShield className="text-gray-400" />
@@ -42,7 +91,10 @@ const Profile = () => {
           </div>
         </div>
 
-        <button className="absolute top-4 right-4 bg-black text-white px-4 py-1.5 rounded text-xs flex items-center gap-2">
+        <button
+          onClick={handleEditProfile}
+          className="absolute top-4 right-4 bg-black text-white px-4 py-1.5 rounded text-xs flex items-center gap-2 hover:bg-gray-800 transition-colors"
+        >
           <FaEdit />
           Edit Profile
         </button>
@@ -64,27 +116,25 @@ const Profile = () => {
             <InfoItem
               icon={<FaUser />}
               label="Full Name"
-              value="Admin User"
+              value={profileData.fullName}
             />
             <InfoItem
               icon={<FaEnvelope />}
               label="Email Address"
-              value="admin@urgenttrades.com"
+              value={profileData.email}
             />
             <InfoItem
               icon={<FaPhone />}
               label="Phone Number"
-              value="+1 (555) 123-4567"
+              value={profileData.phoneNumber}
             />
             <InfoItem
               icon={<FaMapMarkerAlt />}
               label="Location"
-              value="San Francisco, CA"
+              value={profileData.location}
             />
-            <div className="flex flex-col  gap-3">
-              <span className="text-xs text-gray-500">
-                Status
-              </span>
+            <div className="flex flex-col gap-3">
+              <span className="text-xs text-gray-500">Status</span>
               <span className="text-xs px-3 w-16 py-0.5 rounded-full bg-green-100 text-green-700">
                 Active
               </span>
@@ -118,6 +168,20 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
+      {/* Edit Profile Modal */}
+      <ReusableModal
+        open={isEditModalOpen}
+        onClose={handleCancelEdit}
+        title="Edit Profile"
+        footer={null}
+      >
+        <EditProfileForm
+          defaultValues={profileData}
+          onSave={handleSaveProfile}
+          onCancel={handleCancelEdit}
+        />
+      </ReusableModal>
     </div>
   );
 };

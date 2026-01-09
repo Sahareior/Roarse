@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import React from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const TrackingRow = ({ route, status, details, price }) => {
   return (
@@ -11,7 +11,9 @@ const TrackingRow = ({ route, status, details, price }) => {
             {status}
           </span>
         </div>
-        <p className="text-[14px] mt-2 font-semibold text-[#4A5565]">{details}</p>
+        <p className="text-[14px] mt-2 font-semibold text-[#4A5565]">
+          {details}
+        </p>
       </div>
 
       <div className="text-right space-y-1">
@@ -27,7 +29,7 @@ const TrackingRow = ({ route, status, details, price }) => {
 };
 
 const LiveTracking = () => {
-    const location = useLocation()
+  const location = useLocation();
   const trackingData = Array.from({ length: 6 }).map(() => ({
     route: "San Francisco, CA → Denver, CO",
     status: "in-transit",
@@ -45,17 +47,18 @@ const LiveTracking = () => {
           Live Tracking
         </h2>
 
-        <div className="divide-y">
-          {trackingData.map((item, index) => (
-            <TrackingRow key={index} {...item} />
-          ))}
+            <div className="divide-y">
+              {trackingData.map((item, index) => (
+                <TrackingRow key={index} {...item} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <Outlet />
+      )}
     </div>
-        ): (<Outlet />)
-    }
-</div>
-    );
+  );
 };
 
 export default LiveTracking;

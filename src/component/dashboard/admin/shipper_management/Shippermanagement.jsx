@@ -1,4 +1,3 @@
-import React from 'react';
 import CarrierNShipperManagement from '../../../reusable/dashboard/CarrierNShipperManagement';
 import { FaUser } from 'react-icons/fa';
 

@@ -1,28 +1,7 @@
-import React from "react";
-import { FaRegFileAlt } from "react-icons/fa";
-import { FiBox } from "react-icons/fi";
-import { SlCalender, SlLocationPin } from "react-icons/sl";
-
-const DocumentItem = ({ title }) => (
-  <div className="flex justify-between items-center border rounded-lg p-3">
-    <div className="flex items-center gap-3">
-      <div className="p-4 bg-[#e6e6e8] rounded-xl">
-        <FaRegFileAlt size={20} className="text-[#6A7282]" />
-      </div>
-      <div>
-        <span className="text-[16px] flex items-center gap-3 text-[#000000] robReg">{title}</span>
- <div className="flex items-center gap-1 mt-1">
-         <p className="text-[#6A7282] robReg text-xs">Uploaded:</p>
-        <p className="text-[#6A7282] robReg text-xs">10/11/2022</p>
- </div>
-      </div>
-    </div>
-
-    <button className="text-xs bg-black text-white px-8 py-2 rounded">
-      View
-    </button>
-  </div>
-);
+import { useState } from "react";
+import ReusableModal from "../../../../reusable/modal/ReusableModal";
+import AssignAgentForm from "../../../../reusable/dashboard/AssignAgentForm";
+import DocumentItem from "../../../../reusable/dashboard/DocumentItem";
 
 const Section = ({ icon, title, children }) => (
   <div className="space-y-3">
@@ -42,53 +21,144 @@ const Item = ({ label, value }) => (
 );
 
 const QuoteDetails = () => {
+  const [isAssignModalOpen, setIsAssignModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [selectedDocument, setSelectedDocument] = useState(null);
+
+  // Mock documents with image URLs (replace with actual URLs)
+  const documents = [
+    {
+      title: "Business License",
+      imageUrl: "https://fastly.picsum.photos/id/111/536/354.jpg?hmac=fHcbrbPdjjAKJDWHzXpGbfQ9Jbxs3x-FEQNm_rQrmzQ",
+    },
+    {
+      title: "Tax Certificate",
+      imageUrl: "https://fastly.picsum.photos/id/111/536/354.jpg?hmac=fHcbrbPdjjAKJDWHzXpGbfQ9Jbxs3x-FEQNm_rQrmzQ",
+    },
+    {
+      title: "Insurance Certificate",
+      imageUrl: "https://via.placeholder.com/800x600?text=Insurance+Certificate",
+    },
+    {
+      title: "ID Verification",
+      imageUrl: "https://via.placeholder.com/800x600?text=ID+Verification",
+    },
+  ];
+
+  const handleAssignClick = () => {
+    setIsAssignModalOpen(true);
+  };
+
+  const handleAssignSubmit = (values) => {
+    console.log("Assign Agent Form Submitted:", values);
+    setIsAssignModalOpen(false);
+  };
+
+  const handleViewDocument = (doc) => {
+    setSelectedDocument(doc);
+    setIsViewModalOpen(true);
+  };
+
+  const handleCloseViewModal = () => {
+    setIsViewModalOpen(false);
+    setSelectedDocument(null);
+  };
+
+  const handleVerify = () => {
+    alert(`Verifying document: ${selectedDocument?.title}`);
+    handleCloseViewModal();
+  };
+
   return (
-<div>
-        <p className="border-b-2 robReg text-[20px] border-[#E5E7EB] p-7">Quote Details</p>
-        <div className="max-w-8xl flex  border mt-8 rounded-xl p-6">
+    <div>
+      <p className="border-b-2 robReg text-[20px] border-[#E5E7EB] p-7">
+        Quote Details
+      </p>
+      <div className="max-w-8xl flex bg-white border mt-8 rounded-xl p-6">
+        {/* Left Column - Details */}
+        <div className="space-y-9 flex-1 pr-8">
+          {/* Route */}
+          <Section icon="📍" title="Route">
+            <div className="grid grid-cols-2 gap-6">
+              <Item label="From" value="India" />
+              <Item label="To" value="Bangladesh" />
+            </div>
+          </Section>
 
-      {/* Left Column - Details */}
-      <div className="space-y-9 border  flex-1  p-8">
-        {/* Route */}
-        <Section icon=<SlLocationPin size={18} /> title="Route">
-          <div className="grid grid-cols-2 gap-6">
-            <Item label="From" value="India" />
-            <Item label="To" value="Bangladesh" />
-          </div>
-        </Section>
+          {/* Shipment Details */}
+          <Section icon="📦" title="Shipment Details">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <Item label="Transport Mode" value="Road" />
+              <Item label="Weight" value="8000 kg" />
+              <Item label="Category" value="Industrial" />
+            </div>
+          </Section>
 
-        {/* Shipment Details */}
-        <Section icon=<FiBox size={18} /> title="Shipment Details">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <Item label="Transport Mode" value="Road" />
-            <Item label="Weight" value="8000 kg" />
-            <Item label="Category" value="Industrial" />
-          </div>
-        </Section>
+          {/* Timeline */}
+          <Section icon="📅" title="Timeline">
+            <div className="grid grid-cols-2 gap-6">
+              <Item label="Pickup Date" value="ASAP" />
+              <Item label="Expected Delivery" value="Within 2–3 days" />
+            </div>
+          </Section>
+        </div>
 
-        {/* Timeline */}
-        <Section icon=<SlCalender size={18} /> title="Timeline">
-          <div className="grid grid-cols-2 gap-6">
-            <Item label="Pickup Date" value="ASAP" />
-            <Item label="Expected Delivery" value="Within 2–3 days" />
-          </div>
-        </Section>
+        {/* Right Column - Documents */}
+        <div className="w-[40vw] space-y-3 border-l pl-8">
+          <h3 className="text-sm font-medium text-gray-700 mb-2">Documents</h3>
+          {documents.map((doc, index) => (
+            <DocumentItem
+              key={index}
+              title={doc.title}
+              onView={() => handleViewDocument(doc)}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="flex gap-5 justify-end py-6">
+        <button className="py-1 px-6 border">Back</button>
+        <button
+          onClick={handleAssignClick}
+          className="py-1 px-6 border bg-black text-white"
+        >
+          Assign a Agent
+        </button>
       </div>
 
-      {/* Right Column - Documents */}
-      <div className="w-[40vw] space-y-3 border-l pl-8">
-        <h3 className="text-sm font-medium text-gray-700 mb-2">Documents</h3>
-        <DocumentItem title="Business License" />
-        <DocumentItem title="Tax Certificate" />
-        <DocumentItem title="Insurance Certificate" />
-        <DocumentItem title="ID Verification" />
-      </div>
+      {/* View Document Modal */}
+      <ReusableModal
+        open={isViewModalOpen}
+        onClose={handleCloseViewModal}
+        title={selectedDocument?.title}
+        footer={[
+          <button
+            key="verify"
+            onClick={handleVerify}
+            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+          >
+            Verify
+          </button>,
+        ]}
+      >
+        {selectedDocument && (
+          <img
+            src={selectedDocument.imageUrl}
+            alt={selectedDocument.title}
+            className="w-full h-auto rounded-lg"
+          />
+        )}
+      </ReusableModal>
+
+      {/* Assign Agent Modal */}
+      <ReusableModal
+        open={isAssignModalOpen}
+        onClose={() => setIsAssignModalOpen(false)}
+        title="Assign Agent"
+        footer={null}
+      >
+        <AssignAgentForm onSubmit={handleAssignSubmit} />
+      </ReusableModal>
     </div>
-    <div className=" flex gap-5 justify-end py-6">
-        <button className="py-1 px-6 border bg-white rounded-md ">Back</button>
-        <button className="py-1 px-6 border bg-black text-white rounded-md">Assign a Agent</button>
-    </div>
-</div>
   );
 };
 

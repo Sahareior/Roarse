@@ -1,6 +1,7 @@
 import React from "react";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FaMessage, FaPhone } from "react-icons/fa6";
+import { GiCardboardBoxClosed } from "react-icons/gi";
 
 const StatusItem = ({ title, time, active }) => (
   <div className="flex items-start w-full gap-3">
@@ -48,7 +49,7 @@ const ShipperIndividualLiveTracking = () => {
   return (
     <div className="p-1 max-w-8xl robReg mx-auto flex flex-col gap-7 ">
       {/* Back */}
-      <a className="text-[21px]  robReg text-gray-600 cursor-pointer">
+      <a className="text-[21px] robReg text-gray-600 cursor-pointer hover:text-gray-900">
         ← Back
       </a>
 
@@ -66,15 +67,10 @@ const ShipperIndividualLiveTracking = () => {
         {/* Map */}
         <div className="lg:col-span-2 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-6 flex flex-col items-center justify-center text-center">
           <div className="text-blue-700 text-4xl">📍</div>
-          <p className="mt-2 text-sm font-medium">
-            Live map tracking
-          </p>
+          <p className="mt-2 text-sm font-medium">Live map tracking</p>
           <p className="text-xs text-gray-600">
             San Francisco, CA → Denver, CO
           </p>
-
-          {/* Mock markers */}
-          
         </div>
 
         {/* Status */}
@@ -112,21 +108,9 @@ const ShipperIndividualLiveTracking = () => {
             Shipment Status
           </h3>
 
-          <StatusItem
-            title="Confirmed"
-            time="Dec 13, 10:30 AM"
-            active
-          />
-          <StatusItem
-            title="Picked Up"
-            time="Dec 13, 2:15 PM"
-            active
-          />
-          <StatusItem
-            title="In Transit"
-            time="Dec 13, 4:00 PM"
-            active
-          />
+          <StatusItem title="Confirmed" time="Dec 13, 10:30 AM" active />
+          <StatusItem title="Picked Up" time="Dec 13, 2:15 PM" active />
+          <StatusItem title="In Transit" time="Dec 13, 4:00 PM" active />
           <StatusItem title="Out for Delivery" />
           <StatusItem title="Delivered" />
         </div>
