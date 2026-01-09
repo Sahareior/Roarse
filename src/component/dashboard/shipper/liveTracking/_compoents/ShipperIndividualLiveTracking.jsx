@@ -3,6 +3,7 @@ import { GiCardboardBoxClosed } from "react-icons/gi";
 
 const StatusItem = ({ title, time, active }) => (
   <div className="flex items-start gap-3">
+    
     <div className="flex flex-col items-center">
       <span
         className={`w-5 h-5 rounded-full flex items-center justify-center text-xs ${
