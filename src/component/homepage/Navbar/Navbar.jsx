@@ -70,10 +70,14 @@ const Navbar = () => {
 
         {/* Auth Buttons */}
         <div className="flex items-center gap-8 text-white">
+          <Link to='/login'>
           <button className="hover:text-gray-300 transition">Login</button>
+          </Link>
+         <Link to='/signup'>
           <button className="px-4 py-1 rounded-md bg-white text-black hover:bg-gray-200 transition">
             Sign Up
           </button>
+         </Link>
         </div>
       </div>
 
