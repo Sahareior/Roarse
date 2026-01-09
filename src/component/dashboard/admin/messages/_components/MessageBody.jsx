@@ -76,7 +76,7 @@ const Message = ({ message, isOwnMessage }) => {
   };
 
   return (
-    <div className={`flex ${isOwnMessage ? 'justify-end' : 'justify-start'} mb-4`}>
+    <div className={`flex ${isOwnMessage ? 'justify-end' : 'justify-start'} mb-4 `}>
       {!isOwnMessage && (
         <img
           src={message.sender.avatar}
@@ -152,7 +152,7 @@ const MessageBody = () => {
   };
 
   return (
-   <div className="flex flex-col h-[90vh] border-l-4  w-screen bg-white overflow-hidden">
+   <div className="flex flex-col  border-l-4  w-screen bg-white ">
 
       {/* Chat Header */}
       <div className="bg-white border-b border-gray-200 p-4">
@@ -187,7 +187,7 @@ const MessageBody = () => {
         </div>
 
         {/* Messages */}
-        <div className="space-y-1">
+        <div className="space-y-1 h-[54.5vh]">
           {messages.map((message) => (
             <Message
               key={message.id}
