@@ -1,6 +1,7 @@
 
 import { FaArrowRight } from 'react-icons/fa';
 import { FaLocationPin } from 'react-icons/fa6';
+import { SlLocationPin } from 'react-icons/sl';
 import { Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
@@ -13,7 +14,7 @@ const OverViewCard = ({title}) => {
     [1,2,3,4,5].map(items => (
                     <div className='flex gap-2 border mt-6 p-5 border-[#E5E7EB] justify-between'>
                 <div className='flex items-center gap-3'>
-                    <FaLocationPin size={22} />
+                     <SlLocationPin  size={22} />
                     <div >
                         <div className='flex text-[16.5px] robReg items-center gap-3'>
                             <p className='flex items-center gap-2'>India <FaArrowRight /> Bangladesh</p>
