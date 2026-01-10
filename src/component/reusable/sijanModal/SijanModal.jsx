@@ -4,6 +4,8 @@ import { FaCodeBranch } from "react-icons/fa";
 import WalletAddBackAccount from "../../dashboard/agent/agentWallet/modalComponent/WalletAddBackAccount";
 import ContractAlert from "../dashboard/ContractAlert";
 import SettingsConditionalPanel from "../../dashboard/carrier/carrierSettings/_components/SettingsConditionalPanel";
+import Shipment_Filter from "../../homepage/ShipmentFiltter/Shipment_Filtter";
+import { MdOutlineCancel } from "react-icons/md";
 
 
 const SijanModal = ({
@@ -17,6 +19,7 @@ const SijanModal = ({
   edit,
   data,
   view,
+  setIsEmpty,
   compo
 }) => {
   const [formData, setFormData] = useState({});
@@ -62,6 +65,14 @@ const SijanModal = ({
             onClose={onClose}
           />
         );
+       case "homepageSearch":
+        return (
+          <Shipment_Filter
+          component={compo}
+            onClose={onClose}
+            setIsEmpty={setIsEmpty}
+          />
+        );
       default:
         return null;
     }
@@ -79,9 +90,9 @@ const SijanModal = ({
     <div className="fixed  inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div
         className={`bg-white  rounded-lg   ${
-          view || location === "shipmentReq"
+          view || location === "shipmentReq" 
             ? "w-[70vw] h-[90vh] p-8"
-            : "max-w-2xl w-full p-6 mx-4"
+            : location === 'homepageSearch'? 'h-[70vh] w-[60vw]': "max-w-2xl w-full p-6 mx-4" 
         }`}
       >
         <div className="flex justify-between mb-6">
@@ -94,7 +105,7 @@ const SijanModal = ({
             className="h-8 w-8 p-0 rounded-md hover:bg-gray-100 flex items-center justify-center"
             type="button"
           >
-            <FaCodeBranch className="h-4 w-4" />
+           <MdOutlineCancel className="h-7 w-7"  />
           </button>
         </div>
 

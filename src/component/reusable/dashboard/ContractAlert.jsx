@@ -24,12 +24,12 @@ const InfoBlock = ({ label, value }) => (
 
 /* -------------------- Main Component -------------------- */
 
-const ContractAlert = () => {
+const ContractAlert = ({onClose}) => {
   const [accepted, setAccepted] = useState(false);
   const location = useLocation();
 
   return (
-        <div className="w-[60vw]   h-[70vh] overflow-y-auto mx-auto p-1  space-y-6">
+        <div className="w-full   h-[70vh] overflow-y-auto mx-auto p-1  space-y-6">
           {/* Back */}
           <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700">
             <FiArrowLeft />
@@ -161,7 +161,7 @@ const ContractAlert = () => {
 
           {/* Footer Actions */}
           <div className="flex gap-4">
-            <button className="w-full border bg-white py-4 rounded-xl">
+            <button onClick={onClose} className="w-full border bg-white py-4 rounded-xl">
               Cancel
             </button>
 

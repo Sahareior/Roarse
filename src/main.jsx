@@ -70,6 +70,8 @@ import AgentSettings from "./component/dashboard/agent/agentSettings/AgentSettin
 import AgentWallet from "./component/dashboard/agent/agentWallet/AgentWallet.jsx";
 import AgentEditProfile from "./component/dashboard/agent/agentSettings/_components/AgentEditProfile.jsx";
 import ShipperSubs from "./component/dashboard/shipper/shipperSubs/ShipperSubs.jsx";
+import Navbar from "./component/homepage/Navbar/Navbar.jsx";
+import Footer from "./component/homepage/footer/Footer.jsx";
 
 const router = createBrowserRouter([
   {
@@ -96,7 +98,16 @@ const router = createBrowserRouter([
     path: "Quote",
     element: <Quote />,
   },
-  
+        {
+        path: "carrier-profile",
+        element: <>
+        <Navbar />
+         <div className="pt-16">
+           <Carrierprofile />
+         </div>
+          <Footer />
+        </>,
+      },
   {
     path: "carrier",
     element: <ServicesLayout />,
@@ -318,6 +329,13 @@ const router = createBrowserRouter([
       {
         path: "carrier-dashboard/overview",
         element: <CarrierOverview />,
+                children: [
+          {
+            path: ":deliveryId",
+            element: <CareerUpdateDeliveriStatus />,
+        
+          },
+        ],
       },
       {
         path: "carrier-dashboard/active-deliveries",
