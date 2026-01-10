@@ -38,7 +38,9 @@ const Navbar = () => {
           >
             <BiSolidPlaneAlt size={22} className="text-white" />
           </span>
+         <Link to='/'>
           <span className="text-white text-lg font-bold">Roarse</span>
+         </Link>
         </div>
 
         {/* Nav Links */}

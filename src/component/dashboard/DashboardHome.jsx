@@ -70,6 +70,7 @@ const DashboardHome = () => {
           background: "linear-gradient(90deg, #3D3D3D 0%, #16171B 100%)",
         }}
       >
+       <Link to='/'>
         <div className="flex items-center mt-6 justify-center gap-3">
           <p
             className="p-4 text-white rounded-full"
@@ -79,8 +80,9 @@ const DashboardHome = () => {
           >
             <SlPlane size={24} />
           </p>
-          <p className="robReg text-[29px] text-white">Roarse</p>
+          <p className="robReg text-[29px] text-white">Roarsde</p>
         </div>
+       </Link>
         <Menu
           className="mt-14 robReg text-[16px]"
           style={{
