@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Header from "../../reusable/Header";
 import { BiSearch } from "react-icons/bi";
 
-const Shipment_Filter = () => {
+const Shipment_Filter = ({setIsEmpty}) => {
   const {
     register,
     handleSubmit,
@@ -12,6 +12,7 @@ const Shipment_Filter = () => {
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
+    setIsEmpty(false)
   };
 
   // Input field configuration
@@ -78,16 +79,16 @@ const Shipment_Filter = () => {
   };
 
   return (
-    <div className="py-12 px-4">
+    <div className="py-2 px-4">
       <Header
         title={"Send Your Shipment"}
         subTitle={" Provide your information and send your shipment"}
       />
 
-      <div className="md:px-14">
+      <div className="md:px-5">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="max-w-8xl mx-auto bg-white p-8 rounded-xl shadow-lg"
+          className="max-w-8xl mx-auto bg-white p-8 rounded-xl "
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {formFields.map(renderField)}

@@ -63,9 +63,9 @@ const OverViewCard = ({title}) => {
                     </div>
                 </div>
                 <div className='flex items-center gap-9'>
-                    <div className='flex flex-col items-end'>
+                    <div className='flex flex-col  items-end'>
                         <p className='text-[#1C398E] text-[24px] robReg'>$200</p>
-                        <div className='flex items-center gap-1'>
+                        <div className='flex items-center gap-5'>
                             <p className='text-[14px] bg-[#FFEDD4] px-2 py-1 text-[#CA3500] rounded-2xl robReg'>Processing</p>
                             <p className='text-sm text-[#6A7282] robReg'>Dec 12</p>
                         </div>
@@ -99,7 +99,7 @@ const location = useLocation()
 <div>
     {
         location.pathname === '/dashboard/carrier-dashboard/payments'? (
-                    <div className='space-y-24 p-8'>
+                    <div className='space-y-24 p-1'>
             {/* Stats Overview */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {stats.map((stat, index) => (

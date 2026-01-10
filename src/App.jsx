@@ -10,6 +10,7 @@ import Footer from "./component/homepage/footer/Footer";
 import DashboardHome from "./component/dashboard/DashboardHome";
 import { IMAGES } from "./assets";
 import Testimonials from "./component/homepage/testimonial/Testimonials";
+import ShipmentSearchBar from "./component/homepage/ShipmentFiltter/ShipmentSearchBar";
 
 function App() {
   const image = IMAGES.banner;
@@ -18,12 +19,17 @@ function App() {
   return (
     <div>
       <NavbarWithHero image={image} title={heroTitle} subtitle={heroSubtitle} />
-      <Shipment_Filtter />
+      {/* <Shipment_Filtter /> */}
+      <ShipmentSearchBar />
       <Services />
       <AiPowerServices />
       <Testimonials />
-      <AnsnQuestions />
-      <Contact />
+      <div id="faq">
+        <AnsnQuestions />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
       <Footer />
       {/* <DashboardHome /> */}
     </div>

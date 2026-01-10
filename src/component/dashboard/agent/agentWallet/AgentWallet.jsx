@@ -98,6 +98,7 @@ const PayoutRow = ({ item }) => (
 
 const AgentWallet = () => {
   const [payoutOpen, setPayoutOpen] = useState(false);
+  const [addBank,setAddBank] = useState(false)
   const payouts = [
     {
       amount: "2,800",
@@ -227,7 +228,7 @@ const AgentWallet = () => {
               </div>
             </div>
 
-            <button className="w-full border rounded-lg py-4 robReg  text-sm hover:bg-gray-50">
+            <button onClick={()=> setAddBank(true)} className="w-full border rounded-lg py-4 robReg  text-sm hover:bg-gray-50">
               + Add Payment Method
             </button>
           </div>
@@ -237,7 +238,14 @@ const AgentWallet = () => {
 
       <SijanModal
       onClose={() => setPayoutOpen(false)}
+      location={'wallet'}
       isOpen={payoutOpen}
+      children={ <AgentSettingPayoutModal  onClose={() => setPayoutOpen(false)} />}
+      />
+      <SijanModal
+      onClose={() => setAddBank(false)}
+      location={'addBank'}
+      isOpen={addBank}
       children={ <AgentSettingPayoutModal  onClose={() => setPayoutOpen(false)} />}
       />
     </div>

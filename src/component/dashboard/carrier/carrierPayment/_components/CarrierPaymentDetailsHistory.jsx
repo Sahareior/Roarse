@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaArrowLeft,
   FaCheckCircle,
@@ -7,10 +7,11 @@ import {
   FaUniversity,
 } from "react-icons/fa";
 import { FiTrendingUp } from "react-icons/fi";
+import SijanModal from "../../../../reusable/sijanModal/SijanModal";
 
 /* -------------------- Helpers -------------------- */
 
-const StatCard = ({ title, value, subtitle, icon, highlight }) => (
+const StatCard = ({ title, value, subtitle, icon, highlight,setPayoutOpen }) => (
   <div
     className={`rounded-xl robReg p-5 border space-y-2 ${
       highlight ? "bg-green-500 text-white border-green-500" : "bg-white"
@@ -31,7 +32,7 @@ const StatCard = ({ title, value, subtitle, icon, highlight }) => (
       </p>
     )}
     {highlight && (
-      <button className="mt-2 w-full bg-white text-green-600 text-sm py-1.5 rounded-lg">
+      <button onClick={()=> setPayoutOpen(true)} className="mt-2 w-full bg-white text-green-600 text-sm py-1.5 rounded-lg">
         Request Payout
       </button>
     )}
@@ -82,6 +83,8 @@ const PayoutRow = ({ item }) => (
 /* -------------------- Main Component -------------------- */
 
 const CarrierPaymentDetailsHistory = () => {
+      const [payoutOpen, setPayoutOpen] = useState(false);
+  const [addBank,setAddBank] = useState(false)
   const payouts = [
     {
       amount: "2,800",
@@ -145,6 +148,7 @@ const CarrierPaymentDetailsHistory = () => {
           subtitle="Ready for payout"
           icon={<FiTrendingUp />}
           highlight
+          setPayoutOpen={setPayoutOpen}
         />
         <StatCard
           title="Processing"
@@ -213,12 +217,24 @@ const CarrierPaymentDetailsHistory = () => {
               </div>
             </div>
 
-            <button className="w-full border rounded-lg py-4 robReg  text-sm hover:bg-gray-50">
+            <button onClick={()=>setAddBank(true)} className="w-full border rounded-lg py-4 robReg  text-sm hover:bg-gray-50">
               + Add Payment Method
             </button>
           </div>
         </div>
       </div>
+            <SijanModal
+      onClose={() => setPayoutOpen(false)}
+      location={'wallet'}
+      isOpen={payoutOpen}
+     
+      />
+      <SijanModal
+      onClose={() => setAddBank(false)}
+      location={'addBank'}
+      isOpen={addBank}
+   
+      />
     </div>
   );
 };

@@ -1,108 +1,135 @@
-// components/SijanModal/SijanModal.jsx
-import React, { useEffect } from 'react';
-import { IoClose } from 'react-icons/io5';
+import React, { useState, useEffect } from "react";
+import AgentSettingPayoutModal from "../../dashboard/agent/agentWallet/modalComponent/AgentSettingPayoutModal";
+import { FaCodeBranch } from "react-icons/fa";
+import WalletAddBackAccount from "../../dashboard/agent/agentWallet/modalComponent/WalletAddBackAccount";
+import ContractAlert from "../dashboard/ContractAlert";
+import SettingsConditionalPanel from "../../dashboard/carrier/carrierSettings/_components/SettingsConditionalPanel";
+import Shipment_Filter from "../../homepage/ShipmentFiltter/Shipment_Filtter";
+import { MdOutlineCancel } from "react-icons/md";
 
-const SijanModal = ({ 
-  isOpen, 
-  onClose, 
-  children, 
-  title, 
-  
-  closeOnOverlayClick = true,
-  showCloseButton = true,
-  hideTitleBar = false,
-  className = ''
+
+const SijanModal = ({
+  title,
+  location,
+  isOpen,
+  onClose,
+  onSave,
+  subTitle,
+  submitText = "Save",
+  edit,
+  data,
+  view,
+  setIsEmpty,
+  compo
 }) => {
-  // Handle ESC key press
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-    };
-    
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, [isOpen, onClose]);
+  const [formData, setFormData] = useState({});
 
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+  const handleChange = (name, value) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSave(formData);
+  };
 
   if (!isOpen) return null;
 
-  const sizeClasses = {
-    sm: 'max-w-md',
-    md: 'max-w-lg',
-    lg: 'max-w-2xl',
-    xl: 'max-w-4xl',
-    full: 'max-w-full mx-4',
-  };
-
-  const handleOverlayClick = (e) => {
-    if (closeOnOverlayClick && e.target === e.currentTarget) {
-      onClose();
+  const renderFormFields = () => {
+    switch (location) {
+       case "wallet":
+        return (
+          <AgentSettingPayoutModal
+          
+            onClose={onClose}
+          />
+        );
+       case "addBank":
+        return (
+          <WalletAddBackAccount
+          
+            onClose={onClose}
+          />
+        );
+       case "shipmentReq":
+        return (
+          <ContractAlert
+          
+            onClose={onClose}
+          />
+        );
+       case "carrierSettings":
+        return (
+          <SettingsConditionalPanel
+          component={compo}
+            onClose={onClose}
+          />
+        );
+       case "homepageSearch":
+        return (
+          <Shipment_Filter
+          component={compo}
+            onClose={onClose}
+            setIsEmpty={setIsEmpty}
+          />
+        );
+      default:
+        return null;
     }
   };
 
+
+  const showButtons = !(
+    view &&
+    (location === "manageSchool" ||
+      location === "manageJob" ||
+      location === "portfolio")
+  );
+
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
-      {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/50 transition-opacity"
-        aria-hidden="true"
-        onClick={handleOverlayClick}
-      />
-      
-      <div className="flex min-h-full items-center justify-center p-4">
-        <div 
-          className={`relative bg-white rounded-xl shadow-2xl w-[80vw] ${className}`}
-        >
-          {/* Header */}
-          {!hideTitleBar && (title || showCloseButton) && (
-            <div className="flex items-center justify-between p-6 pb-4 border-b">
-              {title && (
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {title}
-                </h3>
-              )}
-              {showCloseButton && (
-                <button
-                  onClick={onClose}
-                  className="ml-auto flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-100 transition-colors"
-                  aria-label="Close"
-                >
-                  <IoClose className="w-5 h-5 text-gray-500" />
-                </button>
-              )}
-            </div>
-          )}
-
-          {/* Content */}
-          <div className="p-6">
-            {children}
+    <div className="fixed  inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div
+        className={`bg-white  rounded-lg   ${
+          view || location === "shipmentReq" 
+            ? "w-[70vw] h-[90vh] p-8"
+            : location === 'homepageSearch'? 'h-[70vh] w-[60vw]': "max-w-2xl w-full p-6 mx-4" 
+        }`}
+      >
+        <div className="flex justify-between mb-6">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+            <p className="text-[#737373] mt-1">{subTitle}</p>
           </div>
-
-          {/* Optional close button when title bar is hidden */}
-          {hideTitleBar && showCloseButton && (
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-              aria-label="Close"
-            >
-              <IoClose className="w-5 h-5 text-gray-500" />
-            </button>
-          )}
+          <button
+            onClick={onClose}
+            className="h-8 w-8 p-0 rounded-md hover:bg-gray-100 flex items-center justify-center"
+            type="button"
+          >
+           <MdOutlineCancel className="h-7 w-7"  />
+          </button>
         </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {renderFormFields()}
+
+          {/* {showButtons && (
+            <div className="flex gap-3 justify-end pt-4">
+              <button
+                type="button"
+                onClick={onClose}
+                className="border hover:bg-gray-400 popmed text-gray-800 py-2 px-4 rounded-[20px] transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="rounded-[20px] bg-[#FFFF00] popmed text-black py-2 px-4 transition-colors"
+              >
+                {submitText}
+              </button>
+            </div>
+          )} */}
+        </form>
       </div>
     </div>
   );
