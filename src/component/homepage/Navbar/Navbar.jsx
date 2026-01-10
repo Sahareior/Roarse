@@ -63,10 +63,10 @@ const Navbar = () => {
           >
             <BiSolidPlaneAlt size={22} className="text-white" />
           </span>
-          <span className="text-white text-lg font-bold">
-            Roarse
-          </span>
-        </Link>
+         <Link to='/'>
+          <span className="text-white text-lg font-bold">Roarse</span>
+         </Link>
+        </div>
 
         {/* Nav Links */}
         <div className="flex gap-16 items-center">
