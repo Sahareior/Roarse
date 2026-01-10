@@ -128,7 +128,7 @@ const RecentShipment = ({
   );
 };
 
-const ProfileSection = ({ shipper, onToggleStatus }) => {
+const ProfileSection = ({ shipper, onToggleStatus,from }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
     name: "John Abraham",
@@ -137,6 +137,9 @@ const ProfileSection = ({ shipper, onToggleStatus }) => {
     address: "123 Main Street, City, Country",
     memberSince: "2025",
   });
+
+
+  console.log(from,'aaaaaaaaaaa')
 
   const handleSave = () => {
     setIsEditing(false);
@@ -153,9 +156,13 @@ const ProfileSection = ({ shipper, onToggleStatus }) => {
             src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D"
             alt="John Abraham"
           />
-          <button className="flex items-center gap-2 text-sm bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors">
+   {
+    from !== '/carrier-profile' && (
+             <button className="flex items-center gap-2 text-sm bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors">
             <FaEdit /> Change Photo
           </button>
+    )
+   }
         </div>
 
         {/* Profile Info */}
@@ -185,7 +192,9 @@ const ProfileSection = ({ shipper, onToggleStatus }) => {
               </div>
             </div>
 
-            <div className="flex flex-col justify-center items-center gap-7 mt-4 lg:mt-0">
+        {
+          from !== '/carrier-profile' && (
+                <div className="flex flex-col justify-center items-center gap-7 mt-4 lg:mt-0">
               <button
                 onClick={onToggleStatus}
                 className={`w-12 h-6 rounded-full relative transition ${
@@ -206,6 +215,8 @@ const ProfileSection = ({ shipper, onToggleStatus }) => {
                 Verify Now
               </button>
             </div>
+          ) 
+        }
           </div>
           <p className="text-gray-300 mb-4 text-sm">
             Member Since {profileData.memberSince}
@@ -303,7 +314,7 @@ const InfoItem = ({ label, value }) => (
   </div>
 );
 
-const ViewProfile = () => {
+const ViewProfile = ({from}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState(null);
 
@@ -351,7 +362,7 @@ const ViewProfile = () => {
   return (
     <div className="p-6 max-w-8xl mx-auto space-y-6">
       {/* Header */}
-      <ProfileSection />
+      <ProfileSection from={from} />
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

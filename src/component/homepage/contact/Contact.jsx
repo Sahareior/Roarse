@@ -16,12 +16,12 @@ const Contact = () => {
           {/* Decorative Images - Hidden on mobile/tablet, shown on lg+ */}
           <img
             className="hidden lg:block absolute right-36 -top-16"
-            src="../../../../public/contact/Vector (3).png"
+            src="/public/contact/Vector (3).png"
             alt=""
           />
           <img
             className="hidden lg:block absolute left-1/3 -top-44"
-            src="../../../../public/contact/Vector (3).png"
+            src="/public/contact/Vector (3).png"
             alt=""
           />
           <img
