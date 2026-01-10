@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
 import App from "./App.jsx";
 import TransportsLayout from "./layouts/TransportsLayout.jsx";
 import ServicesLayout from "./layouts/ServicesLayout.jsx";
@@ -72,6 +71,8 @@ import AgentEditProfile from "./component/dashboard/agent/agentSettings/_compone
 import ShipperSubs from "./component/dashboard/shipper/shipperSubs/ShipperSubs.jsx";
 import Navbar from "./component/homepage/Navbar/Navbar.jsx";
 import Footer from "./component/homepage/footer/Footer.jsx";
+import BargainingChat from "./component/dashboard/carrier/carrierIncomingShipment/_components/BargainingChat.jsx";
+import CareerChat from "./component/dashboard/carrier/carrierActiveDeliverys/_components/CareerChat.jsx";
 
 const router = createBrowserRouter([
   {
@@ -98,16 +99,18 @@ const router = createBrowserRouter([
     path: "Quote",
     element: <Quote />,
   },
-        {
-        path: "carrier-profile",
-        element: <>
+  {
+    path: "carrier-profile",
+    element: (
+      <>
         <Navbar />
-         <div className="pt-16">
-           <Carrierprofile />
-         </div>
-          <Footer />
-        </>,
-      },
+        <div className="pt-16">
+          <Carrierprofile />
+        </div>
+        <Footer />
+      </>
+    ),
+  },
   {
     path: "carrier",
     element: <ServicesLayout />,
@@ -128,7 +131,6 @@ const router = createBrowserRouter([
     path: "forgot-password",
     element: <ForgotPassword />,
   },
-       
 
   {
     path: "dashboard",
@@ -139,7 +141,7 @@ const router = createBrowserRouter([
         element: <AdminOverview />,
       },
 
-       {
+      {
         path: "notifications",
         element: <Notification />,
       },
@@ -263,6 +265,10 @@ const router = createBrowserRouter([
                       },
                     ],
                   },
+                  {
+                    path: "chat",
+                    element: <BargainingChat />,
+                  },
                 ],
               },
               {
@@ -280,12 +286,12 @@ const router = createBrowserRouter([
           {
             path: ":shipment-details",
             element: <ShippingDetails />,
-                children: [
-               {
-            path: ":trackingId",
-            element: <ShipperIndividualLiveTracking />,
-          },
-            ]
+            children: [
+              {
+                path: ":trackingId",
+                element: <ShipperIndividualLiveTracking />,
+              },
+            ],
           },
         ],
       },
@@ -309,7 +315,7 @@ const router = createBrowserRouter([
           },
         ],
       },
-      
+
       {
         path: "shipper-dashboard/payments",
         element: <ShipperPayment />,
@@ -329,11 +335,10 @@ const router = createBrowserRouter([
       {
         path: "carrier-dashboard/overview",
         element: <CarrierOverview />,
-                children: [
+        children: [
           {
             path: ":deliveryId",
             element: <CareerUpdateDeliveriStatus />,
-        
           },
         ],
       },
@@ -344,7 +349,12 @@ const router = createBrowserRouter([
           {
             path: ":deliveryId",
             element: <CareerUpdateDeliveriStatus />,
-        
+            children: [
+              {
+                path: "chat",
+                element: <CareerChat />,
+              },
+            ],
           },
         ],
       },
@@ -355,6 +365,12 @@ const router = createBrowserRouter([
           {
             path: ":incomingId",
             element: <IncomingShipmentDetails />,
+            children: [
+              {
+                path: "chat",
+                element: <BargainingChat />,
+              },
+            ],
           },
         ],
       },
@@ -397,7 +413,7 @@ const router = createBrowserRouter([
       {
         path: "agent-dashboard/agent-overview",
         element: <AgentOverview />,
-         children: [
+        children: [
           {
             path: ":shipmentReqId",
             element: <CarrierShipmentReqDetails />,
@@ -408,16 +424,16 @@ const router = createBrowserRouter([
         path: "agent-dashboard/agent-messages",
         element: <AgentMessages />,
       },
-      
+
       {
         path: "agent-dashboard/agent-settings",
         element: <AgentSettings />,
-        children:[
+        children: [
           {
-            path:'agent-profile-edit',
-            element: <AgentEditProfile />
-          }
-        ]
+            path: "agent-profile-edit",
+            element: <AgentEditProfile />,
+          },
+        ],
       },
 
       {
