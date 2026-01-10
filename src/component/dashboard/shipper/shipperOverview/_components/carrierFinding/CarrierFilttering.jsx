@@ -5,7 +5,7 @@ import { FaCheckDouble } from "react-icons/fa6";
 import { FiArrowLeft } from "react-icons/fi";
 import { IoMdCloudDone } from "react-icons/io";
 import FindingCarriersLoader from "./FindingCarriersLoader";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 /* -------------------- Small Helpers -------------------- */
 
@@ -32,17 +32,18 @@ const ModeTag = ({ text }) => (
 
 /* -------------------- Carrier Card -------------------- */
 
-const CarrierCard = ({ carrier, shipmentId }) => (
+const CarrierCard = ({ carrier }) => (
   <div className="border rounded-xl p-5 space-y-4 bg-white">
+
     {/* Top */}
     <div className="flex justify-between items-start">
       <div className="flex gap-4">
         {/* Avatar */}
-        <Link to="/dashboard/shipper-dashboard/overview/post-shipment/carrier-profile">
-          <div className="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center text-sm">
-            {carrier.initials}
-          </div>
-        </Link>
+ <Link to='/dashboard/shipper-dashboard/overview/post-shipment/carrier-profile'>
+        <div className="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center text-sm">
+          {carrier.initials}
+        </div>
+ </Link>
 
         {/* Info */}
         <div className="space-y-1">
@@ -50,9 +51,7 @@ const CarrierCard = ({ carrier, shipmentId }) => (
             <p className="text-sm font-semibold text-gray-900">
               {carrier.name}
             </p>
-            <p className="text-green-400">
-              <IoMdCloudDone size={20} />
-            </p>
+            <p className="text-green-400"><IoMdCloudDone size={20} /></p>
             <Badge text="available" variant="success" />
           </div>
 
@@ -66,46 +65,51 @@ const CarrierCard = ({ carrier, shipmentId }) => (
           </div>
         </div>
       </div>
+      
 
       {/* Match */}
-      <div className="flex flex-col gap-3 justify-between  h-full">
-        <Badge text={`${carrier.match}% Match`} variant="success" />
-        <div className=" flex gap-4 flex-col ">
-          <Link to={`/dashboard/shipper-dashboard/overview/post-shipment/${shipmentId}/chat`}>
-            <button className="w-[10vw] py-2 text-sm border rounded-lg hover:bg-gray-50">
-              Chat & Bargain
-            </button>
-          </Link>
-        </div>
-      </div>
+<div className="flex flex-col gap-3 justify-between  h-full">
+          <Badge text={`${carrier.match}% Match`} variant="success" />
+          <div className=" flex gap-4 flex-col ">
+      <button className="w-[10vw] py-2 text-sm border rounded-lg hover:bg-gray-50">
+        Chat & Bargain
+      </button>
+
+    </div>
+</div>
     </div>
 
     {/* Modes */}
-    <Divider />
+<Divider />
 
-    <div className="flex justify-between">
-      <div className="flex items-center gap-2">
-        <p className="text-xs text-gray-500">Transport modes:</p>
-        {carrier.modes.map((mode) => (
-          <ModeTag key={mode} text={mode} />
-        ))}
-      </div>
-
-      <div className="">
-        <Link to="/dashboard/shipper-dashboard/overview/post-shipment/:shipmentId/carrier-contact">
-          <button className="w-[10vw] py-2 text-sm bg-black text-white rounded-lg hover:bg-gray-800">
-            Select Carrier
-          </button>
-        </Link>
-      </div>
+<div className="flex justify-between">
+        <div className="flex items-center gap-2">
+      <p className="text-xs text-gray-500">Transport modes:</p>
+      {carrier.modes.map((mode) => (
+        <ModeTag key={mode} text={mode} />
+      ))}
     </div>
+
+
+          <div className="">
+     <Link to='/dashboard/shipper-dashboard/overview/post-shipment/:shipmentId/carrier-contact'>
+      <button className="w-[10vw] py-2 text-sm bg-black text-white rounded-lg hover:bg-gray-800">
+        Select Carrier
+      </button>
+     </Link>
+    </div>
+</div>
+
+
+
   </div>
 );
 
+
+
 const CarrierFilttering = () => {
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
-  const { shipmentId } = useParams();
+const location = useLocation()
+ const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // ⏳ 5 minutes = 300000 ms
@@ -147,63 +151,63 @@ const CarrierFilttering = () => {
   ];
 
   return (
-    <div>
-      {location.pathname ===
-      "/dashboard/shipper-dashboard/overview/post-shipment/:shipmentId" ? (
+<div>
+  {
+    location.pathname === '/dashboard/shipper-dashboard/overview/post-shipment/:shipmentId'? (
         <div className="max-w-8xl bg-white mx-auto p-6 space-y-6">
-          {/* Back */}
-          <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700">
-            <FiArrowLeft />
-            Back
-          </button>
 
-          {/* Header */}
-          <div className="bg-white border rounded-xl p-5 flex justify-between items-center">
-            <div>
-              <p className="text-[22px] robReg font-semibold text-gray-900">
-                Finding Carriers
-              </p>
-              <p className="text-sm robReg mt-2 text-gray-500">
-                India → Bangladesh • ROAD • 100kg
-              </p>
-            </div>
+      {/* Back */}
+      <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700">
+        <FiArrowLeft />
+        Back
+      </button>
 
-            <div className="text-right">
-              <p className="text-xs robReg text-gray-500">Estimated Price</p>
-              <p className="text-[22px] robReg font-semibold mt-2 text-gray-900">
-                $400
-              </p>
-            </div>
+      {/* Header */}
+      <div className="bg-white border rounded-xl p-5 flex justify-between items-center">
+        <div>
+          <p className="text-[22px] robReg font-semibold text-gray-900">
+            Finding Carriers
+          </p>
+          <p className="text-sm robReg mt-2 text-gray-500">
+            India → Bangladesh • ROAD • 100kg
+          </p>
+        </div>
+
+        <div className="text-right">
+          <p className="text-xs robReg text-gray-500">Estimated Price</p>
+          <p className="text-[22px] robReg font-semibold mt-2 text-gray-900">
+            $400
+          </p>
+        </div>
+      </div>
+
+      {/* 🔄 Conditional Rendering */}
+      {isLoading ? (
+        <FindingCarriersLoader />
+      ) : (
+        <>
+          {/* Subheader */}
+          <div>
+            <p className="text-[19px] robReg font-semibold text-gray-900">
+              Matched Carriers
+            </p>
+            <p className="text-[15px] robReg text-gray-500">
+              Sorted by best match • All carriers are verified
+            </p>
           </div>
 
-          {/* 🔄 Conditional Rendering */}
-          {isLoading ? (
-            <FindingCarriersLoader />
-          ) : (
-            <>
-              {/* Subheader */}
-              <div>
-                <p className="text-[19px] robReg font-semibold text-gray-900">
-                  Matched Carriers
-                </p>
-                <p className="text-[15px] robReg text-gray-500">
-                  Sorted by best match • All carriers are verified
-                </p>
-              </div>
-
-              {/* List */}
-              <div className="space-y-4">
-                {carriers.map((carrier, idx) => (
-                  <CarrierCard shipmentId={shipmentId} key={idx} carrier={carrier} />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      ) : (
-        <Outlet />
+          {/* List */}
+          <div className="space-y-4">
+            {carriers.map((carrier, idx) => (
+              <CarrierCard key={idx} carrier={carrier} />
+            ))}
+          </div>
+        </>
       )}
     </div>
+    ): (<Outlet />)
+  }
+</div>
   );
 };
 
