@@ -38,7 +38,7 @@ const AnsnQuestions = () => {
   }
 
   return (
-    <section className="bg-white py-2">
+    <section  className="bg-white py-2">
       <div className="max-w-8xl mx-auto px-6">
         {/* Header */}
         <Header title={' Frequently Asked Questions'} subTitle={'Find answers to common questions about our platform'} />

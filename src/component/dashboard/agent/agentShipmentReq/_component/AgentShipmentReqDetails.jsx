@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowLeft, FaCheckCircle, FaFileArchive, FaRegFileAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { FiBox, FiClock, FiDollarSign } from "react-icons/fi";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import SijanModal from "../../../../reusable/sijanModal/SijanModal";
 
 /* -------------------- Reusable Blocks -------------------- */
 
@@ -47,6 +48,8 @@ const Requirement = ({ text }) => (
 /* -------------------- Main Component -------------------- */
 
 const CarrierShipmentReqDetails = () => {
+  const [openContract,setOpneContract] = useState(false)
+
     const location = useLocation()
   return (
         <div className="max-w-8xl bg-white mx-auto p-6 space-y-6">
@@ -155,11 +158,19 @@ const CarrierShipmentReqDetails = () => {
 
         <div className="flex gap-7">
          
-          <button className="px-12 py-4 bg-[#027B34] text-white rounded-lg text-sm hover:bg-green-600">
+          <button onClick={()=> setOpneContract(true)} className="px-12 py-4 bg-[#027B34] text-white rounded-lg text-sm hover:bg-green-600">
             Accept Request
           </button>
         </div>
       </div>
+
+      
+      <SijanModal
+      onClose={() => setOpneContract(false)}
+      location={'shipmentReq'}
+      isOpen={openContract}
+      
+      />
     </div>
   );
 };

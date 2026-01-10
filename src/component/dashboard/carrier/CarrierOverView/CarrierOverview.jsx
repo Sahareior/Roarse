@@ -4,6 +4,9 @@ import { FaArrowRight, FaBox, FaPlane, FaShip, FaTruck } from 'react-icons/fa';
 import { IoCheckmarkDoneCircleSharp } from 'react-icons/io5';
 import { IoIosTimer } from 'react-icons/io';
 import { FaLocationPin } from 'react-icons/fa6';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { GrLocation } from 'react-icons/gr';
 
 // Enhanced OverviewStats component with different icons and types
 const OverviewStats = ({ type = "total", count = 122, label = "Total Shipments", subLabel = "Currently in transit" }) => {
@@ -42,6 +45,7 @@ const OverviewStats = ({ type = "total", count = 122, label = "Total Shipments",
 
 
 const OverViewCard = ({title}) => {
+    const navigate = useNavigate()
     return(
         <div className='border border-[#E5E7EB] py-4'>
             <p className='robReg text-[20px] px-5'>{title}</p>
@@ -50,7 +54,7 @@ const OverViewCard = ({title}) => {
     [1,2,3,4,5].map(items => (
                     <div className='flex gap-2 border mt-6 p-5 border-[#E5E7EB] justify-between'>
                 <div className='flex items-center gap-3'>
-                    <FaLocationPin size={22} />
+                    <GrLocation  size={22} />
                     <div >
                         <div className='flex text-[16.5px] robReg items-center gap-3'>
                             <p className='flex items-center gap-2'>India <FaArrowRight /> Bangladesh</p>
@@ -64,7 +68,7 @@ const OverViewCard = ({title}) => {
                         <p className='text-[#1C398E] text-[24px] robReg'>$200</p>
                         <p className='text-[14px] robReg'>Estimated</p>
                     </div>
-                    <button className='py-2 px-6 rounded-md bg-black text-white'>View Details</button>
+                    <button onClick={()=> navigate(':deliveryId')} className='py-2 px-6 rounded-md bg-black text-white'>{title === "My Deliveries"? 'Update Status':"View Details"}</button>
                 </div>
             </div>
     ))
@@ -78,7 +82,7 @@ const OverViewCard = ({title}) => {
 // Enhanced CarrierOverview component
 const CarrierOverview = () => {
 
-
+const location = useLocation()
 
     const stats = [
         { type: "active", count: 122, label: "Active Shipments", subLabel: "Currently in transit" },
@@ -88,7 +92,9 @@ const CarrierOverview = () => {
     ];
 
     return (
-        <div className='space-y-24 p-1'>
+<div>
+{
+    location.pathname === '/dashboard/carrier-dashboard/overview'? (        <div className='space-y-24 p-1'>
             {/* Stats Overview */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {stats.map((stat, index) => (
@@ -107,7 +113,9 @@ const CarrierOverview = () => {
  
 
 
-        </div>
+        </div>): (<Outlet />)
+}
+</div>
     );
 };
 

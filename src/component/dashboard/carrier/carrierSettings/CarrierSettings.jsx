@@ -1,5 +1,5 @@
 import { Divider } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaStar,
   FaCheckCircle,
@@ -11,6 +11,7 @@ import {
   FaUniversity,
 } from "react-icons/fa";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import SijanModal from "../../../reusable/sijanModal/SijanModal";
 
 /* -------------------- Reusable Blocks -------------------- */
 
@@ -68,7 +69,16 @@ const Stat = ({ value, label, highlight, color }) => (
 /* -------------------- Main Component -------------------- */
 
 const CarrierSettings = () => {
+    const [openModel,setOpenModel] = useState()
+    const [compo,setCompo] = useState('')
     const location = useLocation()
+
+    const handelOpenModel =(compo)=> {
+        setCompo(compo)
+        setOpenModel(true)
+    }
+
+
   return (
 <div>
     {
@@ -194,7 +204,7 @@ const CarrierSettings = () => {
               <DocumentsRow label="Vehicle Registration (exp. Mar 1, 2026)" />
             </div>
 
-            <button className="w-full mt-3 border rounded-lg py-2 text-sm hover:bg-gray-50">
+            <button onClick={()=> handelOpenModel('document')} className="w-full mt-3 border rounded-lg py-2 text-sm hover:bg-gray-50">
               + Upload New Document
             </button>
           </Card>
@@ -202,11 +212,11 @@ const CarrierSettings = () => {
           {/* Account Actions */}
           <Card title="Account Actions" icon={FaUser}>
             <div className="flex flex-col gap-6 text-sm">
-              <button className=" bg-stone-400 text-center rounded-xl hover:bg-slate-700 text-white px-7 py-4 hover:underline">
+              <button onClick={()=> handelOpenModel('password')} className=" bg-stone-400 text-center rounded-xl hover:bg-slate-700 text-white px-7 py-4 hover:underline">
                 Change Password
               </button>
 
-              <button className=" bg-black hover:bg-black/75 text-center rounded-xl text-white px-7 py-4 hover:underline">
+              <button onClick={()=> handelOpenModel('preference')} className=" bg-black hover:bg-black/75 text-center rounded-xl text-white px-7 py-4 hover:underline">
                 Notification Preference
               </button>
  
@@ -214,6 +224,14 @@ const CarrierSettings = () => {
           </Card>
         </div>
       </div>
+      
+      <SijanModal
+      onClose={() => setOpenModel(false)}
+      location={'carrierSettings'}
+      compo ={compo}
+      isOpen={openModel}
+    
+      />
     </div>
         ) : (<Outlet />)
     }
