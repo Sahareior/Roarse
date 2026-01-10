@@ -22,7 +22,7 @@ const BargainingChat = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
+    <div className="bg-white min-h-[84vh] flex flex-col">
       {/* Header */}
       <div className="bg-black text-white p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">

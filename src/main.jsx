@@ -71,6 +71,7 @@ import AgentWallet from "./component/dashboard/agent/agentWallet/AgentWallet.jsx
 import AgentEditProfile from "./component/dashboard/agent/agentSettings/_components/AgentEditProfile.jsx";
 import ShipperSubs from "./component/dashboard/shipper/shipperSubs/ShipperSubs.jsx";
 import BargainingChat from "./component/dashboard/carrier/carrierIncomingShipment/_components/BargainingChat.jsx";
+import CareerChat from "./component/dashboard/carrier/carrierActiveDeliverys/_components/CareerChat.jsx";
 
 const router = createBrowserRouter([
   {
@@ -252,6 +253,10 @@ const router = createBrowserRouter([
                       },
                     ],
                   },
+                  {
+                    path: "chat",
+                    element: <BargainingChat />,
+                  },
                 ],
               },
               {
@@ -326,6 +331,12 @@ const router = createBrowserRouter([
           {
             path: ":deliveryId",
             element: <CareerUpdateDeliveriStatus />,
+            children: [
+              {
+                path: "chat",
+                element: <CareerChat />,
+              },
+            ],
           },
         ],
       },
